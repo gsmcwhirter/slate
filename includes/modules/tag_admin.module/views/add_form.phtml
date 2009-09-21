@@ -1,0 +1,35 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('tag_admin', 'process_add_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Adding a new Tag</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Label:</th>
+    <td><input type="text" name="form[label]" id="form[label]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("label", self::$PARAMS["form"])) ? self::$PARAMS["form"]["label"] : "" ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Color:</th>
+    <td><input type="text" name="form[color]" id="form[color]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("color", self::$PARAMS["form"])) ? self::$PARAMS["form"]["color"] : "" ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save this data" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

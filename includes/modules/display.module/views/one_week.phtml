@@ -1,0 +1,42 @@
+    <div id="menu">
+      <div style="float:left;" class="menu-style">
+      <?= kvframework_markup::link_to_remote("<span>iCal Subscription</span>", array("update" => 'calendar_div', "url" => self::url_for('display', 'ical_instructions'), "loading" => "doLoading('calendar');")) ?>
+
+      <a href="<?= self::url_for('mobile', 'user_appts', array("rcid" => $this->USER->rcinfo("id"))) ?>" target="_new"><span>Print Today's Appointments</span></a>
+      <?= kvframework_markup::link_to_remote("<span>Text Messaging</span>", array("update" => 'main_div', "url" => self::url_for('consultant_prefs', 'pref_form'), "loading" => "doLoading('main');")) ?>
+      </div>
+      <div style="float:right;" class="menu-style">
+        <a href="#" onClick="linktoweek(document.getElementById('date').value, '<?= self::url_for('display', 'display_date_part') ?>');"><span>Refresh</span></a>
+      </div>
+    </div>
+    <form method="POST" action="<?= self::url_for('display', 'display_date_full')?>" id="calendar_form">
+    <div id="grid-1">
+    <div id="calendar_div">
+      <?php $this->render_inline("calendar") ?>
+    </div>
+    </div>
+
+    <div id="grid-2">
+      <?= $this->daySelectOutput() ?>
+      <div id="grid-3a">
+      </div>
+
+      <div id="grid-3" style="float:right;">
+      <div id="wrapper">
+        <div id="sysmsg">
+          <div class="header">System Messages</div>
+          <div id="msg"><?= $this->outputErrors() ?><?= $this->outputMessages() ?></div>
+        </div>
+
+        <div id="details">
+          <div class="header clearfix">
+            <div style="float:left;">Details</div>
+            <div style="float:right;"><a href="#" onClick="clearDetails();">X</a></div>
+          </div>
+          <div id="dets" class="msg2">
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</form>

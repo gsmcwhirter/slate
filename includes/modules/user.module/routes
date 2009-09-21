@@ -1,0 +1,15 @@
+login => login_form
+do_login => login_form_process
+logout => logout_form_process
+topbar => topbar
+mobile/login => mlogin_form
+mobile/do_login => mlogin_form_process
+mobile/logout => mlogout_form_process
+mobile/topbar => mtopbar
+receipt => receipt_form
+lostpass => lost_password_form
+do_lostpass => process_lost_password
+=> welcome
+reload => reload
+clear_lockouts => clear_lockouts
+mobile => mobile

@@ -1,0 +1,7 @@
+  <?php if($this->connected) { ?>
+    <strong><?= self::session("username") ?></strong> - 
+    <a href="<?= self::url_for("user","mlogout_form_process") ?>"><span>logout</span></a>
+  <?php } else { ?>
+    <strong>guest</strong> - 
+    <a href="<?= self::url_for("user", "mlogin_form") ?>"><span>login</span></a>
+  <?php } ?>

@@ -1,0 +1,25 @@
+<?= $this->outputErrors1() ?>
+<?= $this->outputMessages1() ?>
+
+<div id="formwrap">
+<p><a href='<?= CONFIG::rooturl ?>/pdf/<?= $this->pdf ?>'>PDF version</a></p>
+
+  <p><strong>Lists</strong><ul>
+  <?php foreach($this->op_data["output"] as $ticket => $stat_report){
+    ksort($stat_report);
+    ?>
+    <strong>Ticket: <?= $ticket ?></strong>
+    <ul>
+    <?php foreach($stat_report as $appt_hash){
+      ?>
+      <?= $this->page_display_appt_list_out($appt_hash) ?>
+      <?php
+    }
+    ?>
+    </ul><br />
+    <?php
+  }
+  ?>
+  </ul></p>
+
+</div>

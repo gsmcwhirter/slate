@@ -1,0 +1,11 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+<p>
+<form method="POST" action="<?= self::url_for("mobile", "user_appts") ?>">
+Consultant: <?= kvframework_markup::select(array("name" => "rcid", "values" => $this->all_rcs, "selected" => null, "prompt" => true, "class" => "txtbox2")) ?><br />
+<input type="submit" value="view schedule" class="txtbox3">
+</form>
+</p>
+<p>
+<a href="<?= self::url_for("mobile","all_appts") ?>">View All Appointments Today</a>
+</p>

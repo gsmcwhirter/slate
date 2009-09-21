@@ -1,0 +1,64 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('appttype_admin', 'process_edit'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Editing an Appointment Type</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => "doLoading('main')")) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Name:</th>
+    <td><input type="text" name="form[name]" id="form[name]" value="<?= (array_key_exists("form", self::$PARAMS) && array_key_exists("name", self::$PARAMS["form"])) ? self::$PARAMS["form"]["name"] : Appttype::select_name($this->thisat) ?>" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Default Location:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[default_loc]", "values" => array_merge(array(array("No Default", 0)), TOOLS::array_collect($this->thisat->locations, '$l', 'array(Location::select_name($l).(($l->location_id == '.$this->thisat->default_loc.') ? " (current)" : "" ), $l->location_id)')), "selected" => (array_key_exists("form",self::$PARAMS) && array_key_exists("default_loc", self::$PARAMS["form"])) ? (int)self::$PARAMS["form"]["default_loc"] : (int)$this->thisat->default_loc, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Default LocDetails:</th>
+    <td><input type="text" name="form[default_locdetails]" id="form[default_locdetails]" value="<?= (array_key_exists("form", self::$PARAMS) && array_key_exists("default_locdetails", self::$PARAMS["form"])) ? self::$PARAMS["form"]["default_locdetails"] : $this->thisat->default_locdetails ?>" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Appointment Types:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[tm_class]", "values" => array(array("Regular","Ticket"),array("Meetings/Other","Meeting,Meecket")), "selected" => (array_key_exists("form", self::$PARAMS) && array_key_exists("ats", self::$PARAMS["form"])) ? self::$PARAMS["form"]["ats"] : $this->thisat->tm_class, "multiple" => false, "size" => 1, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Weekdays Allowed:</th>
+    <td><?= kvframework_markup::select(array("name" => "weekdays_allowed[]", "values" => array(array("Monday", "M"),array("Tuesday", "T"),array("Wednesday", "W"),array("Thursday", "H"),array("Friday", "F"),array("Saturday", "S"),array("Sunday","N")), "selected" => ((array_key_exists("weekdays_allowed", self::$PARAMS) && is_array(self::$PARAMS["weekdays_allowed"])) ? self::$PARAMS["weekdays_allowed"] : explode(",", $this->thisat->weekdays_allowed)), "class" => 'txtbox2', "size" => 7, "multiple" => 'multiple')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Minimum Length (hours, decimal ok):</th>
+    <td><input type="text" name="form[min_appt_length]" id="form[min_appt_length]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("min_appt_length", self::$PARAMS["form"])) ? self::$PARAMS["form"]["min_appt_length"] : ((int)$this->thisat->min_appt_length / 2) ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="Save changes" class="txtbox3"></td>
+  </tr>
+</tbody>
+</table>
+<input type="hidden" name="atid" id="atid" value="<?= $this->thisat->appttype_id ?>" />
+</form>
+</div>

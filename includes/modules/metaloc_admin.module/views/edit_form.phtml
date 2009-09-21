@@ -1,0 +1,36 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('metaloc_admin', 'process_edit_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Editing a Meta-Location</div><div style="float:right"><?= kvframework_markup::link_to_remote( "cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Name:</th>
+    <td><input type="text" name="form[name]" id="form[name]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("name", self::$PARAMS["form"])) ? self::$PARMAS["form"]["name"] : $this->thisthing->name ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+  <th>Universal?</th>
+    <td><?= kvframework_markup::select(array("name" => "form[universal]", "values" => array(array("Yes".(($this->thisthing->universal == "TRUE") ? " (current)" : "" ), "TRUE"),array("No".(($this->thisthing->universal == "FALSE") ? " (current)" : "" ), "FALSE")), "prompt" => true, "selected" => ((array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("universal", self::$PARAMS["form"])) ? self::$PARAMS["form"]["universal"] : $this->thisthing->universal), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save this data" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+<input type="hidden" name="mlid" id="mlid" value="<?= $this->thisthing->metaloc_id ?>" />
+</form>
+</div>

@@ -1,0 +1,3 @@
+select => edit_select
+edit => edit_form
+edit/do => process_edit

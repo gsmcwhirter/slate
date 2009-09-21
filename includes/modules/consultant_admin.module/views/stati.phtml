@@ -1,0 +1,34 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('consultant_admin','process_status_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Consultant Status</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin','index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr>
+    <th style="text-align: right;"><span style="text-decoration: underline;">Active</span></th>
+    <td>&nbsp;</td>
+  </tr>
+  <?php foreach($this->all_things as $thing){ ?>
+  <tr>
+    <th style="text-align: right;"><input type="hidden" name="rc_status[<?= $thing[1] ?>]" id="rc_status[<?= $thing[1] ?>]_off" value="inactive" /><input type="checkbox" name="rc_status[<?= $thing[1] ?>]" id="rc_status[<?= $thing[1] ?>]_on" value="active" <?= (array_key_exists("rc_status", self::$PARAMS) && is_array(self::$PARAMS["rc_status"]) && array_key_exists($thing[1], self::$PARAMS["rc_status"])) ? ((self::$PARAMS["rc_status"][$thing[1]] == "inactive") ? "" : "checked='checked'") : (($thing[2] == "inactive") ? "" : "checked='checked'") ?>/>&nbsp;</th>
+    <td><label for="rc_status[<?= $thing[1] ?>]_on"><?= $thing[0] ?></label></td>
+  </tr>
+  <?php } ?>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save changes" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

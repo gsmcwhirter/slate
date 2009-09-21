@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>KvScheduler - Mobile</title>
+<head>
+
+</head>
+
+<body>
+  <div id="header">
+  <div class="inner">
+    <div id="topbar_div" class="menu-style" style="float:left;"><? self::render_component_inline("user","mtopbar") ?></div>
+    <div style="float:right;" class="menu-style">[Date: <?= TOOLS::date_to_s(TOOLS::date_today()) ?>] &nbsp;&nbsp; <a href="<?= self::url_for("mobile","index") ?>"><span>Return to Home</span></a></div>
+  </div>
+  </div>
+  &nbsp;<br />
+  <div id="container_div" class="clearfix">
+    [CONTENT_FOR_LAYOUT]
+  </div>
+</body>
+</html>

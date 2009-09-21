@@ -1,0 +1,5 @@
+new/form => add_form
+new/process => process_add_form
+remove/form => remove_form
+remove/confirm => remove_confirm
+remove/process => process_remove_confirm

@@ -1,0 +1,67 @@
+<?= $this->outputErrors1() ?>
+<?= $this->outputMessages1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('stats', 'process_consultant'), "loading" => "doLoading('main');")) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Reports: Consultant</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Consultant:</th>
+    <td><?= kvframework_markup::select(array("name" => "rcs[]", "values" => $this->all_rcs, "selected" => (array_key_exists("rcs", self::$PARAMS) && is_array(self::$PARAMS["rcs"])) ? self::$PARAMS["rcs"] : null, "class" => 'txtbox2', "multiple" => true, "size" => 10)) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Types:</th>
+    <td><?= kvframework_markup::select(array("name" => "types[]", "values" => $this->all_ats, "selected" => (array_key_exists("types", self::$PARAMS) && is_array(self::$PARAMS["types"])) ? self::$PARAMS["types"] : null, "class" => 'txtbox2', "multiple" => true, "size" => 4)) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Start Date:</th>
+    <td><input type="text" name="startdate" id="startdate" value="<?= (array_key_exists("startdate", self::$PARAMS)) ? self::$PARAMS["startdate"] : "" ?>" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Stop Date:</th>
+    <td><input type="text" name="stopdate" id="stopdate" value="<?= (array_key_exists("stopdate", self::$PARAMS)) ? self::$PARAMS["stopdate"] : "" ?>" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Reports:</th>
+    <td><?= kvframework_markup::select(array("name" => "opts[]", "values" => TOOLS::array_collect($this->options, '$i','array(ucwords($i)." of Appointments", $i)'), "selected" => (array_key_exists("opts", self::$PARAMS) && is_array(self::$PARAMS["opts"])) ? self::$PARAMS["opts"] : null, "class" => 'txtbox2', "multiple" => true, "size" => count($this->options))) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Report Saving:</th>
+    <td><?= kvframework_markup::select(array("name" => "save", "values" => array(array("Save","yes"),array("Don't Save","no")), "selected" => (array_key_exists("save", self::$PARAMS)) ? self::$PARAMS["save"] : "no", "class" => 'txtbox2', "multiple" => false, "size" => 1)) ?></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Report Description:</th>
+    <td><input type="text" name="description" id="description" value="<?= (array_key_exists("description", self::$PARAMS)) ? self::$PARAMS["description"] : "" ?>" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="Generate" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

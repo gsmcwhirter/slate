@@ -1,0 +1,42 @@
+<?= $this->outputErrors1() ?>
+<?= $this->outputMessages1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('stats', 'process_canned'), "loading" => "doLoading('main');")) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Reports: Saved Templates</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Report:</th>
+    <td><?= kvframework_markup::select(array("name" => "canned", "values" => $this->all_canned, "selected" => (array_key_exists("canned", self::$PARAMS)) ? self::$PARAMS["canned"] : null, "class" => 'txtbox2', "multiple" => false, "size" => 1, "prompt" => true)) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Start Date:</th>
+    <td><input type="text" name="startdate" id="startdate" value="<?= (array_key_exists("startdate", self::$PARAMS)) ? self::$PARAMS["startdate"] : "" ?>" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Stop Date:</th>
+    <td><input type="text" name="stopdate" id="stopdate" value="<?= (array_key_exists("stopdate", self::$PARAMS)) ? self::$PARAMS["stopdate"] : "" ?>" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="Generate" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

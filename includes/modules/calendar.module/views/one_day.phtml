@@ -1,0 +1,51 @@
+    <div id="menu">
+      <div style="float:left;" class="menu-style">
+        <?= kvframework_markup::link_to_remote("<span>Ticket Search</span>",array("update" => "main_div", "url" => self::url_for('calendar','form_ticket'), "loading" => "doLoading('main');")) ?>
+      </div>
+      <div style="float:right;" class="menu-style">
+        <a href="#" onclick="clearLockouts();"><span>Clear Lockouts</span></a>
+        <a href="#" onclick="linktodate(document.getElementById('date').value, '<?= self::url_for('calendar', 'display_date_part') ?>');"><span>Refresh</span></a>
+      </div>
+    </div>
+    <form method="POST" action="<?= self::url_for('calendar', 'display_date_full')?>" id="calendar_form">
+    <div id="grid-1">
+    <div id="calendar_div">
+    <?php $this->render_inline("calendar") ?>
+  </div>
+    </div>
+    <input type='hidden' name='starttime' id='starttime' />
+    <input type='hidden' name='stoptime' id='stoptime' />
+    <input type='hidden' name='consultant' id='consultant' />
+    </form>
+
+    <div id="grid-2">
+      <?= $this->daySelectOutput() ?>
+      <div id="grid-3a">
+        <div class="button" style="color:#f68d91;" onclick="ajax_aid_rid_link('<?= self::url_for('appointment','delete_appointment') ?>');" onmouseover="this.style.backgroundColor='#fff87f'" onmouseout="this.style.backgroundColor='#ffffff'">Cancel</div>
+        <div class="button" onclick="ajax_aid_rid_link('<?= self::url_for('appointment','modify_appointment') ?>');" onmouseover="this.style.backgroundColor='#fff87f'" onmouseout="this.style.backgroundColor='#ffffff'">Edit</div>
+        <div class="button" style="border-bottom:1px solid #b4b4b4;" onclick="rescheduleLink()" onmouseover="this.style.backgroundColor='#fff87f'" onmouseout="this.style.backgroundColor='#ffffff'">Move</div>
+    <div class="labels">App</div>
+        <br />
+        <div class="button" onclick="ajax_tid_link('<?= self::url_for('ticket', 'modify_thing_form') ?>')" onmouseover="this.style.backgroundColor='#fff87f'" onmouseout="this.style.backgroundColor='#ffffff'">Edit</div>
+        <div class="button" onclick="ajax_tid_link('<?= self::url_for('ticket', 'delete_thing_form') ?>')" onmouseover="this.style.backgroundColor='#fff87f'" style="color:#f68d91; border-bottom:1px solid #b4b4b4;" onmouseover="this.style.backgroundColor='#fff87f'" onmouseout="this.style.backgroundColor='#ffffff'">Delete</div>
+    <div class="labels">Ticket</div>
+      </div>
+
+      <div id="grid-3" style="float:right;">
+      <div id="wrapper">
+        <div id="sysmsg">
+          <div class="header">System Messages</div>
+          <div id="msg"><?= $this->outputErrors() ?><?= $this->outputMessages() ?></div>
+        </div>
+
+        <div id="details">
+          <div class="header clearfix">
+            <div style="float:left;">Details</div>
+            <div style="float:right;"><a href="#" onclick="clearDetails();">X</a></div>
+          </div>
+          <div id="dets" class="msg2">
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>

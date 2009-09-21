@@ -1,0 +1,1046 @@
+/*
+ * @author Dimitry Bentsionov <dimitryb@gmail.com>, Greg McWhirter <gsmcwhirter@gmail.com>
+ * @copyright Copyright &copy; 2006-2008, Dimitry Bentsionov, Greg McWhirter
+ * @license MIT License
+ * 
+ */
+
+.progressBar .border { background-color: white; border: 1px solid grey; width: 100%; }
+.progressBar .background { background-color: #333; height: 18px; width: 0%; }
+
+body {
+  margin:0;
+}
+
+form {
+  margin:0;
+}
+
+/* ------------------------ */
+/* LOGO             */
+/* ------------------------ */
+
+#header {
+  height:16px;
+  background:#e1e1e1;
+  border-bottom:1px solid #c4c7ca;
+  margin-bottom:20px;
+  padding-top:4px;
+  width:100%;
+}
+
+#header .inner {
+  color:#707070;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  margin:0 auto;
+  width:763px;
+}
+
+#logo {
+  margin:0 auto;
+  width:763px;
+  height:21px;
+}
+
+/* ------------------------ */
+/* CONTAINER        */
+/* ------------------------ */
+
+#container_div {
+  margin:0 auto;
+  text-align:left;
+  width:743px; /* 763 originally */
+  /* height:552px; /* 552 originally */
+  background-color:#e1e1e1;
+  padding:9px 10px 7px 10px !important; padding:9px 10px 0 10px;
+}
+
+#footer {
+  margin:0 auto;
+  width:763px;
+  height:2px;
+}
+
+/* ------------------------ */
+/* MENU            */
+/* ------------------------ */
+
+#menu {
+  height:13px;
+  width:735px;
+  background-color:#ffffff;
+  padding:4px;
+}
+
+.menu-style {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:10px;
+  text-transform:uppercase;
+  height:13px;
+}
+
+.menu-style a:link, .menu-style a:visited {
+  background:#4c9fbe url(/scheduler2/images/menu_rounder.gif) left top no-repeat;
+  height:13px;
+  color:#ffffff;
+  text-decoration:none;
+  padding-left:4px;
+}
+
+.menu-style a:hover, .menu-style a:active {
+  background-color:#0076a3;
+}
+
+.menu-style a span {
+  background:url(/scheduler2/images/menu_rounder.gif) right top no-repeat;
+  padding-right:4px;
+}
+
+/* ------------------------ */
+/* DATING          */
+/* ------------------------ */
+
+#dating {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  color:#ed1c24;
+  font-size:12px;
+  font-weight:bold;
+  margin-top:8px;
+  margin-bottom:7px;
+}
+
+#load {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  color:#0076a3;
+  font-size:12px;
+  font-weight:bold;
+  margin-top:8px;
+  margin-bottom:7px;
+}
+
+/* ------------------------ */
+
+/* APPOINTMENT GRID      */
+
+/* ------------------------ */
+
+
+
+#grid-1 {
+  width:565px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:11px;
+  line-height:10px;
+  float:left;
+}
+
+#gridcover {
+  background-color:#ffffff;
+  border:1px solid #b4b4b4;
+}
+
+
+#grid-1 table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+#grid-1 tr.bottomers {
+  border-top:2px solid #cccccc;
+}
+
+
+#grid-1 th {
+  background-color:#ebebeb;
+  border-right:1px solid #cccccc;
+  width:35px;
+  height:13px;
+  font-size:10px;
+  font-weight:bold;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  text-align:center;
+}
+
+#grid-1 td.header {
+  background-color:#ebebeb;
+  border-right:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+  width:122px;
+  height:14px;
+  font-weight:bold;
+  padding:0 4px;
+}
+
+#grid-1 td.header2 {
+  font-size:9px;
+  background-color:#ebebeb;
+  border-bottom:1px solid #cccccc;
+  text-align:center;
+  height:14px;
+  width: 17px;
+
+  padding: 0;
+}
+
+#grid-1 td.header2a {
+
+  font-size:9px;
+
+  background-color:#ebebeb;
+
+  border-right:1px solid #cccccc;
+
+  border-bottom:1px solid #cccccc;
+
+  text-align:center;
+
+  height:14px;
+  width: 17px;
+
+  padding:0;
+
+}
+
+
+
+#grid-1 td.name {
+
+  color:#0076a3;
+
+  border-right:1px solid #cccccc;
+
+  border-bottom:1px solid #cccccc;
+
+  width:122px;
+
+  font-weight:bold;
+
+  height:14px;
+
+  padding:0 4px;
+
+}
+
+#grid-1 td.name2 {
+  color:#ed1c24;
+  border-right:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+  width:122px;
+  font-weight:bold;
+  height:16px;
+  padding:0 4px;
+}
+
+#grid-1 td.name3 {
+  font-size:9px;
+  border-right:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+  height:14px;
+  padding:0 4px;
+}
+
+
+#grid-1 td.timeslot {
+
+  font-size:9px;
+
+  border-right:1px solid #cccccc;
+
+  border-bottom:1px solid #cccccc;
+
+  height:14px;
+
+  padding:0;
+
+  width:17px;
+
+}
+
+
+
+/* Here are all the classes for COLORS */
+
+#grid-1 td.selected {cursor:pointer; background-color: #c0c0c0;}
+
+#grid-1 td.available {cursor:pointer; }
+
+#grid-1 td.oncall { background-color:#71cfea;cursor:pointer; }
+
+#grid-1 td.oncall2 { background-color:#f26522;cursor:pointer; }
+
+#grid-1 td.scheduled { background-color:#f26522;cursor:pointer; }
+
+#grid-1 td.lockout { background-color:#4e2d1e; }
+
+
+
+/* Below are modifiers to get the height right - Box model hack */
+
+
+
+html>body #grid-1 th { height:15px; }
+
+
+
+html>body #grid-1 td.header { height:15px; }
+
+
+
+html>body #grid-1 td.header2 { height:15px; }
+
+
+
+html>body #grid-1 td.header2a { height:15px; }
+
+
+
+html>body #grid-1 td.name { height:15px; }
+
+
+
+html>body #grid-1 td.timeslot { height:15px; }
+
+
+
+/* ------------------------ */
+
+/* RIGHT BAR - GRID 2    */
+
+/* ------------------------ */
+
+
+
+#grid-2 {
+
+  width:169px;
+
+  font-family:Arial, Helvetica, sans-serif;
+
+  font-size:10px;
+
+  line-height:10px;
+
+  float:right;
+
+  margin-top:25px;
+
+}
+
+
+
+#grid-2a {
+
+  width:41px;
+
+  float:left;
+
+  padding-top:30px;
+
+}
+
+
+
+#grid-2a .button {
+
+  border-left:1px solid #b4b4b4;
+
+  border-top:1px solid #b4b4b4;
+
+  background-color:#ffffff;
+
+  height:14px;
+
+  line-height:14px;
+
+  padding-left:3px;
+
+  color:#7fbad1;
+
+  cursor:pointer;
+
+}
+
+
+
+html>body #grid-2a .button { line-height:15px; } /* Again, a modifier */
+
+
+
+#grid-2b {
+  width:126px;
+  background-color:#ffffff;
+  border-top:1px solid #b4b4b4;
+  border-left:1px solid #b4b4b4;
+  border-right:1px solid #b4b4b4;
+  float:right;
+}
+
+#grid-2b table.cal {
+  width:100%;
+  border-collapse:collapse;
+}
+
+#grid-2b table.cal th {
+  background-color:#ebebeb;
+  border-right:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+  height:14px;
+  text-transform:uppercase;
+  padding:0;
+}
+
+#grid-2b table.cal th.arrows {
+  color:#a4a4a4;
+  width:17px;
+  text-align:center;
+  cursor:pointer;
+}
+
+#grid-2b table.cal th.title {
+  width:89px;
+  text-align:center;
+}
+
+#grid-2b table.cal td.header {
+  background-color:#ebebeb;
+  border-right:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+  height:14px;
+  width:17px;
+  text-align:center;
+  padding:0;
+}
+
+#grid-2b table.cal td.pointer {
+  cursor:pointer;
+}
+
+#grid-2b table.cal td.day {
+  border-right:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+  height:14px;
+  width:17px;
+  text-align:center;
+  padding:0;
+  cursor:pointer;
+}
+
+#grid-2b table.cal td.day-off {
+  cursor:default;
+}
+
+
+
+/* Here are the colors for the calendar */
+
+#grid-2b table.cal td.today { background-color:#fffcd1; }
+
+#grid-2b table.cal td.viewing { background-color:#f7a37a; }
+
+#grid-2b table.cal tr.selrow { background-color:#f7a37a; }
+#grid-2b table.cal tr.clear { background:none; }
+
+
+
+/* Below are modifiers to get the height right - Box model hack */
+
+
+
+html>body #grid-2b table.cal th { height:15px; }
+
+
+
+html>body #grid-2b table.cal td.header { height:15px; }
+
+
+
+html>body #grid-2b table.cal td.day { height:15px; }
+
+
+
+/* ------------------------ */
+/* RIGHT BAR - GRID 3    */
+/* ------------------------ */
+
+#grid-3a {
+  width:41px;
+  float:left;
+  padding-top:59px;
+  display:none;
+}
+
+#grid-3a .button {
+  border-left:1px solid #b4b4b4;
+  border-top:1px solid #b4b4b4;
+  background-color:#ffffff;
+  height:14px;
+  line-height:14px;
+  padding-left:3px;
+  color:#7fbad1;
+  cursor:pointer;
+}
+
+#grid-3a .labels {
+  height:14px;
+  line-height:14px;
+  color:#939393;
+  text-align:right;
+  padding-right:2px;
+}
+
+
+html>body #grid-3a .button { line-height:15px; } /* Again, a modifier */
+
+/* ------------------------ */
+
+#grid-3 {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:10px;
+  line-height:10px;
+  border-bottom:1px solid #b4b4b4;
+  border-left:1px solid #b4b4b4;
+  border-right:1px solid #b4b4b4;
+  background-color:#ffffff;
+  width:126px;
+  float:right;
+}
+
+#grid-3 #wrapper {
+  border-bottom:1px solid #cccccc;
+  border-right:1px solid #cccccc;
+  overflow:hidden;
+}
+
+#grid-3 .header {
+  background-color:#ebebeb;
+  padding:3px 5px 2px 5px;
+  text-transform:uppercase;
+  border-bottom:1px solid #cccccc;
+}
+
+html>body #grid-3 .header { padding:2px 5px; } /* Again, a modifier */
+
+#grid-3 #msg {
+  background-color:#ffffff;
+  color:#ed1c24;
+  padding:10px 6px;
+  line-height:14px;
+  text-align:center;
+}
+
+#grid-3 #msg hr {
+  border:0;
+  background-color: #cccccc;
+  height:1px;
+  margin-top:11px;
+  margin-bottom:11px;
+}
+
+#grid-3 .msg2 {
+  background-color:#ffffff;
+  padding:6px;
+  color:#898989;
+  line-height:12px;
+  overflow:hidden;
+}
+
+#grid-3 #details a {
+  text-decoration:none;
+  font-weight:bold;
+}
+
+#grid-3 #details #fulldetails {
+  background-color:#ebebeb;
+  padding:2px 5px 2px 5px;
+  text-transform:uppercase;
+  border:1px solid #cccccc;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+#grid-3 #details #details-msg .toptitle {
+  color:#ed1c24;
+}
+
+#grid-3 #details #details-msg .title {
+  text-transform:uppercase;
+  color:#000000;
+}
+
+/* ------------------------ */
+/* BOX            */
+/* ------------------------ */
+
+#overlay {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:797px;
+  background-image:url(/scheduler2/images/overlay.png);
+  display:none;
+}
+
+* html #overlay{
+  background-color:#333;
+  back\ground-color:transparent;
+  background-image:url(/scheduler2/images/blank.gif);
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/scheduler2/images/overlay.png", sizingMethod="scale");
+}
+
+#boxload {
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  width:16px;
+  height:16px;
+}
+
+#box {
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  width:743px;
+}
+
+#box table {
+  padding:0;
+  margin:0;
+  width:743px;
+}
+
+#box table td.leftward {
+  width:493px;
+  vertical-align:top;
+}
+
+#box table td.spacer {
+  width:14px;
+}
+
+#box table td.rightward {
+  width:236px;
+  vertical-align:top;
+}
+
+#box .output_message_main {
+  border:1px solid #464646;
+  border-right:2px solid #464646;
+  border-bottom:2px solid #464646;
+  background:#d7f0db;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  padding:5px 10px;
+  line-height:16px;
+  margin-bottom:2px;
+}
+
+#box .output_errors_main {
+  border:1px solid #464646;
+  border-right:2px solid #464646;
+  border-bottom:2px solid #464646;
+  background:#ffcccc;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  padding:5px 10px;
+  line-height:16px;
+  margin-bottom:2px;
+}
+
+#box .title {
+  margin-bottom:2px;
+  border:1px solid #464646;
+  border-right:2px solid #464646;
+  border-bottom:2px solid #464646;
+  background-color:#ffffff;
+  padding:5px 10px;
+  height:15px;
+}
+
+#box .cancelbutton {
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  padding-top:2px;
+  color:#545454;
+  float:right;
+}
+
+#box .cancelbutton a {
+  color:#545454;
+}
+
+#box .title h1 {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+  font-weight:bold;
+  color:#1c495a;
+  margin:0;
+  float:left;
+}
+
+#box .button {
+  margin-top:2px;
+  border:1px solid #464646;
+  border-right:2px solid #464646;
+  border-bottom:2px solid #464646;
+  background-color:#ffffff;
+  padding:5px 10px;
+  text-align:right;
+
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  font-weight:bold;
+  color:#7f7f7f;
+}
+
+#box .button a {
+  color:#7f7f7f;
+}
+
+#box .button input.btn {
+   font-family:Verdana, Arial, Helvetica, sans-serif;
+   font-size:11px;
+}
+
+#insetbox {
+  border:1px solid #464646;
+  border-right:2px solid #464646;
+  border-bottom:2px solid #464646;
+  background-color:#ffffff;
+  padding:10px 12px 9px 12px;
+}
+
+#leftpane {
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  font-weight:bold;
+  color:#7f7f7f;
+  text-transform:uppercase;
+}
+
+#leftpane h1 {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+  font-weight:bold;
+  color:#1c495a;
+  margin:0 0 13px 0;
+  text-transform:none;
+}
+
+#leftpane .line { margin-bottom:3px; text-transform:none; }
+
+html>body #leftpane .line { margin-bottom:4px; } /* Again, a modifier */
+
+#leftpane .line2 { margin-bottom:5px; text-transform:none; color:#b2b2b2; }
+
+html>body #leftpane .line2 { margin-bottom:6px; } /* Again, a modifier */
+
+#leftpane .line_txt {
+  border:1px solid #b2b2b2;
+  padding:1px 2px 2px 2px;
+  font-weight:normal;
+  text-transform:none;
+  width:293px;
+  margin-bottom:3px;
+}
+
+#leftpane .note {
+  font-weight:normal;
+  text-transform:none;
+}
+
+#leftpane h2 {
+  background:#e8e8e8;
+  padding:4px 5px;
+  margin:15px 0 5px 0;
+  font-size:9px;
+}
+
+#leftpane .txtbox {
+  padding:0;
+  border:1px solid #b2b2b2;
+  height:13px;
+  width:293px;
+  padding:1px 4px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  font-weight:normal;
+  text-transform:none;
+}
+
+#leftpane .txtbox2 {
+  padding:0;
+  border:1px solid #b2b2b2;
+  height:15px;
+  width:303px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  font-weight:normal;
+  text-transform:none;
+}
+
+#leftpane .txtbox2_noheight {
+  padding:0;
+  border:1px solid #b2b2b2;
+  width:303px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  font-weight:normal;
+  text-transform:none;
+}
+
+#leftpane .date_selector select {
+  padding:0;
+  border:1px solid #b2b2b2;
+  height:15px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  font-weight:normal;
+  text-transform:none;
+}
+
+#leftpane .txtbox3 {
+  width:293px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  font-weight:normal;
+  text-transform:none;
+  border:1px solid #b2b2b2;
+  padding:1px 4px;
+}
+
+#leftpane .number {
+  color:#b2b2b2;
+}
+
+#leftpane .lefttxt {
+  float:left;
+  margin-right:13px;
+}
+
+#leftpane .righttxt {
+  float:left;
+}
+
+/* ------------------------ */
+
+#rightpane {
+  width:138px;
+}
+
+#rightpane .orange1 a:link, #rightpane .orange1 a:visited {
+  background-color:#f26522;
+}
+
+#rightpane .orange1 a:hover, #rightpane .orange1 a:active {
+  background-color:#df5d1f;
+}
+
+#infobox {
+  margin:8px 0;
+  padding:8px 7px;
+  background-color:#cce3f2;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  color:#000000;
+}
+
+#infobox h1 {
+  font-size:9px;
+  text-transform:uppercase;
+  margin:0 0 4px 0;
+}
+
+#infobox .boxwrapper {
+  padding:1px 2px 2px 2px;
+  border:1px solid #b7ccd9;
+  margin-bottom:3px;
+}
+
+/* ------------------------ */
+/* TOOL TIP          */
+/* ------------------------ */
+
+#tooltip {
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:9px;
+  color:#ffffff;
+  width:139px;
+  height:40px; /*27*/
+  position:absolute;
+  top:0;
+  left:0;
+  line-height:12px;
+  padding:2px 0 0 4px;
+  display:none;
+}
+
+.tt1 {
+  background:url(/scheduler2/images/tooltip.png) no-repeat; /*no-repeat*/
+}
+
+* html .tt1 {
+  background-color:#333;
+  back\ground-color:transparent;
+  background-image:url(/scheduler2/images/blank.gif);
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/scheduler2/images/tooltip.png", sizingMethod="scale");
+}
+
+.tt2 {
+  background:url(/scheduler2/images/tooltip2.png) no-repeat; /*no-repeat*/
+}
+
+* html .tt2 {
+  background-color:#333;
+  back\ground-color:transparent;
+  background-image:url(/scheduler2/images/blank.gif);
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/scheduler2/images/tooltip2.png", sizingMethod="scale");
+}
+
+
+/* ------------------------ */
+/* FORMS          */
+/* ------------------------ */
+
+#formwrap {
+  background:#ffffff;
+  width:350px;
+  padding:10px;
+  color:#4c4c4c;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+}
+
+#formwrap a {
+  color:#4c4c4c;
+}
+
+#formwrap table {
+  padding:0;
+  width:350px;
+}
+
+#formwrap table th {
+  width:105px;
+  font-weight:normal;
+  padding:2px 0 0 0;
+}
+
+#formwrap table td {
+  padding:0;
+}
+
+#formwrap table td.title {
+
+}
+
+#formwrap .txtbox1 {
+  border:1px solid #b7b7b7;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  padding:1px 4px 0 4px;
+  width:248px;
+  height:14px;
+}
+
+#formwrap .txtbox2 {
+  border:1px solid #b7b7b7;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  width:258px;
+}
+
+#formwrap .txtbox3 {
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+}
+
+#formwrap .txtbox4 {
+  width:252px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  font-weight:normal;
+  text-transform:none;
+  border:1px solid #b7b7b7;
+  padding:1px 0 0 4px;
+}
+
+#formwrap .date_selector select {
+  padding:0;
+  border:1px solid #b7b7b7;
+  height:15px;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  font-weight:normal;
+  text-transform:none;
+}
+
+#formwrap .titler {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  color:#ed1c24;
+  font-size:12px;
+  font-weight:bold;
+}
+
+#formwrap .spacer {
+  height:10px;
+  background:url(/scheduler2/images/formline.gif) repeat-x;
+}
+
+#output_error {
+  float:right;
+  width:343px;
+  border:1px solid #ffa3a3;
+  background:#ffcccc;
+  color:#4c4c4c;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  padding:10px;
+  line-height:16px;
+}
+
+#output_message {
+  float:right;
+  width:343px;
+  border:1px solid #98d8a1;
+  background:#d7f0db;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  padding:10px;
+  line-height:16px;
+}
+
+#formwrap table ul {
+  margin:0;
+  padding:0;
+  margin-left:12px;
+}
+
+#formwrap table ul li {
+  margin-bottom:5px;
+}
+
+#formwrap table ul li ul {
+  margin:5px 0 5px 12px;
+}
+
+/* ------------------------ */
+/* CLEAR FIX        */
+/* ------------------------ */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {display: inline-table;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */

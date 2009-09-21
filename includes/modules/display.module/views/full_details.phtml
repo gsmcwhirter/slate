@@ -1,0 +1,73 @@
+<table border="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="leftward">
+        <div class="title"><h1>Appointment details</h1>
+        <div class="cancelbutton"><a href="#" onclick="cancelBox();">Close</a></div>
+        </div>
+        <div id="insetbox">
+          <div id="leftpane">
+            Display of information regarding the ticket and appointment.<br />
+            <h2>Appointment Information</h2>
+
+            <div class="line">Consultant</div>
+            <div class="line_txt"><?= Consultant::select_name($this->rc) ?></div>
+
+            <div class="line">Date and Time</div>
+            <div class="line_txt"><?= self::$PARAMS["adate"] ?> from <?= TOOLS::time_to_s(TOOLS::string_to_time($this->appointment->starttime), true) ?> to <?= TOOLS::time_to_s(TOOLS::string_to_time($this->appointment->stoptime), true) ?></div>
+
+            <div class="line">Location (Zone)</div>
+            <div class="line_txt"><?= $this->appointment->location_name ?> (<?= $this->appointment->loczone_name ?> AREA) - <?= $this->appointment->locdetails ?></div>
+
+            <?php if ($this->appointment->repeat == "TRUE") { ?>
+            <div class="line">Repeating</div>
+            <div class="line_txt">Every <?= ($this->appointment->repetition_week == 1) ? "week" : $this->appointment->repetition_week." weeks" ?> on <?= implode(", ", TOOLS::array_collect(explode(",", $this->appointment->repetition_day), '$i', 'TOOLS::$dayabbrs[TOOLS::weekday_reverse($i)]')) ?> from <?= $this->appointment->startdate ?> until <?= $this->appointment->stopdate ?></div>
+            <?php } ?>
+
+            <?php if ($this->appointment->tm_type == "Ticket") { ?>
+            <h2>Ticket Information:</h2>
+
+            <div class="line">Person</div>
+            <div class="line_txt"><?= $this->appointment->tm->person ?></div>
+
+            <div class="line">Primary Phone</div>
+            <div class="line_txt"><?= $this->appointment->tm->phone ?></div>
+
+            <div class="line">Cell Phone</div>
+            <div class="line_txt"><?= $this->appointment->tm->altphone ?></div>
+
+            <div class="line">Remedy Ticket</div>
+            <div class="line_txt"><?= $this->appointment->tm->remedy_ticket ?></div>
+
+            <div class="line">Description</div>
+            <div class="line_txt"><?= $this->appointment->tm->description /*TOOLS::escape_quotes($this->appointment->tm->description)*/ ?></div>
+
+            <?php } elseif ($this->appointment->tm_type == "Meeting" || $this->appointment->tm_type == "Meecket") { ?>
+            <h2>Meeting Information:</h2>
+
+            <div class="line">Subject</div>
+            <div class="line_txt"><?= $this->appointment->tm->subject ?></div>
+
+            <div class="line">Description</div>
+            <div class="line_txt"><?= $this->appointment->tm->description /*TOOLS::escape_quotes($this->appointment->tm->description)*/ ?></div>
+
+            <?php } ?>
+            <br />
+            <?php if (count($this->appointment->consultants) > 1) { ?>
+            <h2>Other Consultants on this <?= $this->appointment->tm_type ?></h2>
+            <?= implode(", ", TOOLS::array_collect(TOOLS::array_reject($this->appointment->consultants, '$r', '$r->consultant_id == '.$this->rc->consultant_id.''), '$r', 'Consultant::select_name($r)')) ?>
+            <?php } ?>
+          </div>
+        </div>
+        <div class="button">
+          <a href="#" onclick="cancelBox();">Close</a>
+        </div>
+      </td>
+      <td class="spacer"></td>
+      <td class="rightward">
+        <?= $this->outputMessages() ?>
+        <?= $this->outputErrors() ?>
+      </td>
+    </tr>
+  </tbody>
+</table>

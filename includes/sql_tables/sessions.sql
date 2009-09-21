@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS sessions (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  sessid  CHAR(32),
+  data    TEXT,
+  PRIMARY KEY(id),
+  INDEX(sessid)
+);
+
+DROP TABLE IF EXISTS sessions;

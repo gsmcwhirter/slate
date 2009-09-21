@@ -1,0 +1,42 @@
+<?= kvframework_markup::form_remote_tag(array("id" => "editfrm", "update" => 'box', "url" => self::url_for('appointment', 'process_modify_form'), 302 => "hideBox(true);", "loading" => 'doLoading2(true);', "complete" => "doLoading2(false);")) ?>
+<table border="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="leftward">
+        <div class="title"><h1>Modify appointment</h1><div class="cancelbutton"><a href="#" onclick="hideBox(false);">cancel</a></div></div>
+        <div id="insetbox">
+          <div id="leftpane">
+            <input type="hidden" name="aid" id="aid" value="<?= $this->appointment->appointment_id ?>" />
+            <?php if ($this->appointment->repeat != 'TRUE') { ?>
+              <div class="line">Date</div>
+              <div class="line2">&raquo; <?= $this->appointment->startdate ?></div>
+            <?php } else { ?>
+              <div class="line">Repetition Information</div>
+              <div class="line2">Every <?= ($this->appointment->repetition_week == 1) ? "week" : $this->appointment->repetition_week." weeks" ?> on <?= implode(", ", TOOLS::array_collect(explode(",", $this->appointment->repetition_day), '$i', 'TOOLS::$daynames[TOOLS::weekday_reverse($i)]')) ?> from <?= $this->appointment->startdate ?> until <?= $this->appointment->stopdate ?></div>
+            <?php } ?>
+
+            <div class="line">Time</div>
+            <div class="line2">&raquo; <?= TOOLS::time_to_s(TOOLS::string_to_time($this->appointment->starttime), true) ?> - <?= TOOLS::time_to_s(TOOLS::string_to_time($this->appointment->stoptime), true) ?></div>
+
+            <div class="line">Consultants</div>
+            <div class="line2">&raquo; <?= implode(", ", TOOLS::array_collect($this->appointment->consultants, '$r', 'Consultant::select_name($r)')) ?></div>
+
+            <div class="line">Location</div>
+            <div class="line2"><?= kvframework_markup::select(array("name" => "fi[loc_id]", "values" => $this->all_locs, "prompt" => true, "selected" => ((array_key_exists("fi", self::$PARAMS) && array_key_exists("loc_id",self::$PARAMS["fi"])) ? (int)self::$PARAMS["fi"]["loc_id"] : (int)$this->appointment->location_id), "class" => 'txtbox2')) ?></div>
+
+            <div class="line">Location Details</div>
+            <div class="line2"><input type="text" name="fi[locdetails]" id="fi[locdetails]" value="<?= ((array_key_exists("fi", self::$PARAMS) && array_key_exists("locdetails", self::$PARAMS["fi"])) ? self::$PARAMS["fi"]["locdetails"] : $this->appointment->locdetails) ?>" class="txtbox" />
+            </div>
+          </div>
+        </div>
+        <div class="button"><input type="submit" value="save" class="btn" /></div>
+      </td>
+      <td class="spacer"></td>
+      <td class="rightward">
+        <?= $this->outputMessages() ?>
+        <?= $this->outputErrors() ?>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</form>

@@ -1,0 +1,10 @@
+<?php if(!$this->show_any){ ?>
+  <input type="hidden" name="date" id="date" value="<?= TOOLS::date_to_s(TOOLS::date_today()) ?>" />
+  <input type="hidden" name="starttime" id="starttime" value="" />
+  <input type="hidden" name="stoptime" id="stoptime" value="" />
+  <input type="hidden" name="consultant" id="consultant" value="" />
+<?php } else { ?>
+  <?= $this->myCalendarOutput() ?>
+<?php } ?>
+<input type="hidden" name="controller_name" id="controller_name" value="display_admin" />
+<input type="hidden" name="rcid_for_js" id="rcid_for_js" value="<?= $this->rc_id ?>" />

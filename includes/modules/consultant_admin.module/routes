@@ -1,0 +1,10 @@
+new/form => add_form
+new/process => process_add_form
+edit/select => edit_select
+edit/form => edit_form
+edit/process => process_edit_form
+delete/select => delete_select
+delete/confirm => delete_confirm
+delete/process => process_delete_confirm
+status => status_form
+status/process => process_status_form

@@ -1,0 +1,97 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('consultant_admin','process_edit_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Editing a Consultant</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin','index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Username:</th>
+    <td><input type="text" name="form[username]" id="form[username]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("username", self::$PARAMS["form"])) ? self::$PARAMS["form"]["username"] : $this->thisguy->username ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Real name:</th>
+    <td><input type="text" name="form[realname]" id="form[realname]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("realname", self::$PARAMS["form"])) ? self::$PARAMS["form"]["realname"] :$this->thisguy->realname ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Specialty:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[tag_id]", "values" => $this->all_tags, "prompt" => false, "selected" => (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("tag_id", self::$PARAMS["form"])) ? self::$PARAMS["form"]["tag_id"] : $this->thisguy->tag_id, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Gender:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[gender]", "values" => array(array("Male", "M"),array("Female", "F")), "prompt" => false, "selected" => (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("gender", self::$PARAMS["form"])) ? self::$PARAMS["form"]["gender"] : $this->thisguy->gender, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Status:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[status]", "values" => array(array("Active", "active"),array("Inactive", "inactive")), "prompt" => false, "selected" => (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("status", self::$PARAMS["form"])) ? self::$PARAMS["form"]["status"] : $this->thisguy->status, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Staff:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[staff]", "values" => array(array("Yes", "TRUE"),array("No", "FALSE")), "prompt" => false, "selected" => (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("staff", self::$PARAMS["form"])) ? self::$PARAMS["form"]["staff"] : $this->thisguy->staff, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Schedulable Appts:</th>
+    <td>
+    <table style='width: 100%;'>
+      <tr>
+          <td></td><td>Sys</td><td>Sup</td><td>HD</td>
+      </tr>
+      <tr>
+          <td>Generic:</td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[1]" id="appt_perms[1]" value="0" /><input type="checkbox" name="appt_perms[1]" id="appt_perms[1]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("1", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["1"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 0, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[5]" id="appt_perms[5]" value="0" /><input type="checkbox" name="appt_perms[5]" id="appt_perms[5]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("5", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["5"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 4, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[9]" id="appt_perms[9]" value="0" /><input type="checkbox" name="appt_perms[9]" id="appt_perms[9]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("9", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["9"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 8, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+      </tr>
+      <tr>
+          <td>OSCAR:</td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[2]" id="appt_perms[2]" value="0" /><input type="checkbox" name="appt_perms[2]" id="appt_perms[2]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("2", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["2"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 1, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[6]" id="appt_perms[6]" value="0" /><input type="checkbox" name="appt_perms[6]" id="appt_perms[6]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("6", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["6"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 5, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[10]" id="appt_perms[10]" value="0" /><input type="checkbox" name="appt_perms[10]" id="appt_perms[10]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("10", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["10"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 9, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+      </tr>
+      <tr>
+          <td>Wireless:</td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[3]" id="appt_perms[3]" value="0" /><input type="checkbox" name="appt_perms[3]" id="appt_perms[3]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("3", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["3"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 2, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[7]" id="appt_perms[7]" value="0" /><input type="checkbox" name="appt_perms[7]" id="appt_perms[7]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("7", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["7"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 6, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[11]" id="appt_perms[11]" value="0" /><input type="checkbox" name="appt_perms[11]" id="appt_perms[11]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("11", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["11"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 10, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+      </tr>
+      <tr>
+          <td>Other:</td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[4]" id="appt_perms[4]" value="0" /><input type="checkbox" name="appt_perms[4]" id="appt_perms[4]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("4", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["4"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 3, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[8]" id="appt_perms[8]" value="0" /><input type="checkbox" name="appt_perms[8]" id="appt_perms[8]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("8", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["8"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 7, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+          <td style='text-align: center;'><input type="hidden" name="appt_perms[12]" id="appt_perms[12]" value="0" /><input type="checkbox" name="appt_perms[12]" id="appt_perms[12]" value="1" <?= (array_key_exists("appt_perms", self::$PARAMS) && is_array(self::$PARAMS["appt_perms"]) && array_key_exists("12", self::$PARAMS["appt_perms"])) ? ((self::$PARAMS["appt_perms"]["12"] == "0") ? "" : "checked='checked'") : ((substr($this->thisguy->appt_perms, 11, 1) == "0") ? "" : "checked='checked'") ?> /></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save these credentials" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+<input type="hidden" name="sid" id="sid" value="<?= $this->thisguy->consultant_id ?>" /></form>
+</div>

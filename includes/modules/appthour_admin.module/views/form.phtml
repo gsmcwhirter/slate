@@ -1,0 +1,95 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+<script type="text/javascript">
+toggle_display('consultanthours_admin','hide1','hide1a','hide2','hide2a','hide2b','hide2c','hide3','hide3a');
+</script>
+<div id="formwrap">
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" id="grid-2b" style="background:#808080; width:auto;"><?= $this->gen_calendars() ?></td>
+  </tr>
+</tbody>
+</table>
+</div>
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('appthour_admin', 'process_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Changing Appointment Hours</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Appointment Type:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[appttype_id]", "values" => $this->all_apts, "prompt" => true, "selected" => ((array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("appttype_id", self::$PARAMS["form"])) ? self::$PARAMS["form"]["appttype_id"] : null), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Type of Change:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[htype]", "values" => array(array("Repeating Hours", "repeat"),array("One-Time Hours", "once"), array("Remove Hours", "delete")), "prompt" => true, "selected" => ((array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("htype", self::$PARAMS["form"])) ? self::$PARAMS["form"]["htype"] : null), "class" => 'txtbox2', "onchange" => "toggle_display('consultanthours_admin','hide1','hide1a','hide2','hide2a','hide2b','hide2c','hide3','hide3a');")) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top" id="hide2" style="display:none;">
+    <th>Semester:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[semester]", "values" => $this->all_sems, "prompt" => true, "selected" => ((!is_null($this->sem)) ? $this->sem->semester_id : null), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr id="hide2a" style="display:none;">
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top" id="hide2b" style="display:none;">
+    <td colspan="2">-or-</td>
+  </tr>
+  <tr id="hide2c" style="display:none;">
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Start Date:<br /><span id="hide1" style="display:none;">End Date:</span></th>
+    <td><input type="text" name="date[startdate]" id="date[startdate]" class="txtbox1" value="<?= (array_key_exists("date", self::$PARAMS) && is_array(self::$PARAMS["date"]) && array_key_exists("startdate", self::$PARAMS["date"])) ? self::$PARAMS["date"]["startdate"] : "" ?>" /><br />
+    <span id="hide1a" style="display:none;"><input type="text" name="date[stopdate]" id="date[stopdate]" class="txtbox1" value="<?= (array_key_exists("date", self::$PARAMS) && is_array(self::$PARAMS["date"]) && array_key_exists("stopdate", self::$PARAMS["date"])) ? self::$PARAMS["date"]["stopdate"] : "" ?>" /></span>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Start Time:</th>
+    <td><?= TOOLS::mytime_select(array("selected" => ((array_key_exists("starttime", self::$PARAMS) && is_array(self::$PARAMS["starttime"])) ? TOOLS::string_to_time(implode(":", self::$PARAMS["starttime"])) : null), "name" => "starttime", "on_minutes" => 30, "include_59" => false, "display12h" => true)) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Stop Time:</th>
+    <td><?= TOOLS::mytime_select(array("selected" => ((array_key_exists("stoptime", self::$PARAMS) && is_array(self::$PARAMS["stoptime"])) ? TOOLS::string_to_time(implode(":", self::$PARAMS["stoptime"])) : null), "name" => "stoptime", "on_minutes" => 30, "include_59" => true, "display12h" => true)) ?></td>
+  </tr>
+  <tr id="hide3" style="display:none;">
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top" id="hide3a" style="display:none;">
+    <th>Weekdays:</th>
+    <td><?= kvframework_markup::select(array("name" => "repeat[]", "values" => array(array("Monday", "M"),array("Tuesday", "T"),array("Wednesday", "W"),array("Thursday", "H"),array("Friday", "F"),array("Saturday", "S"),array("Sunday","N")), "selected" => ((array_key_exists("repeat", self::$PARAMS) && is_array(self::$PARAMS["repeat"])) ? self::$PARAMS["repeat"] : array("M","T","W","H","F","S","N")), "class" => 'txtbox2', "size" => 7, "multiple" => 'multiple')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save this data" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

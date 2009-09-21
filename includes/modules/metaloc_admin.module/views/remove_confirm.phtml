@@ -1,0 +1,29 @@
+<div id="formwrap">
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Removing a Meta-Location</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <td colspan="2">Are you sure you want to remove this meta-location?</td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <td colspan="2"><?= Metaloc::select_name($this->thisthing) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <td colspan="2">
+    &raquo; <?= kvframework_markup::link_to_remote("Yes", array("update" => 'main_div', "url" => self::url_for('metaloc_admin', 'process_remove_confirm', array("confirm" => 'yes', "mlid" => $this->thisthing->metaloc_id)), "loading" => 'doLoading(\'main\')')) ?><br />
+    &raquo; <?= kvframework_markup::link_to_remote("No", array("update" => 'main_div', "url" => self::url_for('metaloc_admin', 'process_remove_confirm', array("confirm" => 'no', "mlid" => $this->thisthing->metaloc_id)), "loading" => 'doLoading(\'main\')')) ?></td>
+  </tr>
+</tbody>
+</table>
+</div>

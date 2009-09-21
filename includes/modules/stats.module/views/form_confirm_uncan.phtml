@@ -1,0 +1,10 @@
+<?= $this->outputErrors1() ?>
+<?= $this->outputMessages1() ?>
+
+<div id="formwrap">
+  <p>Are you sure you want to remove the report "<?= $this->canned->description ?>?"</p>
+  <p>
+  <?= kvframework_markup::link_to_remote("Yes, remove the report", array("update" => 'main_div', "url" => self::url_for('stats', 'process_uncanned_confirm',array("canned" => $this->canned->canned_id, "rconfirm" => "yes")), "loading" => "doLoading('main');")) ?><br />
+  <?= kvframework_markup::link_to_remote("No, do not remove the report", array("update" => 'main_div', "url" => self::url_for('stats', 'process_uncanned_confirm',array("canned" => $this->canned->canned_id, "rconfirm" => "no")), "loading" => "doLoading('main');")) ?></br>
+  </p>
+</div>

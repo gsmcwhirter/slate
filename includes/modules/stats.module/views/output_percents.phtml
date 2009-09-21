@@ -1,0 +1,12 @@
+<?= $this->outputErrors1() ?>
+<?= $this->outputMessages1() ?>
+
+<div id="formwrap">
+
+  <?php foreach($this->op_data["output"] as $at_name => $pct){ ?>
+    <?= ucwords($at_name) ?>: <?= $pct ?>%<br />
+  <?php } ?>
+
+  Total Appointments: <?= $this->op_data["Total"] ?>
+&nbsp;<br /><a href='<?= CONFIG::rooturl ?>/pdf/<?= $this->pdf ?>'>PDF version</a>
+</div>

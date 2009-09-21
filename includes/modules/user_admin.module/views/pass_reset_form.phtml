@@ -1,0 +1,28 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('user_admin', 'process_mass_password_reset_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Mass Password Reset</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Users:</th>
+    <td><?= kvframework_markup::select(array("name" => "users[]", "values" => $this->all_users, "selected" => ((array_key_exists("users", self::$PARAMS) && is_array(self::$PARAMS["users"])) ? self::$PARAMS["users"] : null), "class" => "", "size" => 10, "multiple" => true)) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="continue..." class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

@@ -1,0 +1,97 @@
+<table border="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="leftward">
+        <div class="title"><h1>New appointment</h1><div class="cancelbutton"><a href="#" onclick="hideBox(false);">cancel</a></div></div>
+        <div id="insetbox">
+          <div id="leftpane">
+            Are you sure you want to schedule the following appointment?
+            <span class="note">There are already the maximum number of concurrent appointments scheduled during that time span.</span>
+            <br />
+            <div class="line">Consultant</div>
+            <div class="line_txt"><?= Consultant::select_name($this->thisguy) ?></div>
+
+            <h2>Appointment Information</h2>
+            <div class="line">Location Tag</div>
+            <div class="line_txt"><?= Loctag::select_name($this->confirm_max_concur_which) ?></div>
+
+            <div class="line">Date and Time</div>
+            <div class="line_txt"><?= TOOLS::date_to_s($this->date) ?> at <?= TOOLS::time_to_s($this->start, true) ?> to <?= TOOLS::time_to_s($this->stop, true) ?></div>
+
+          </div>
+        </div>
+        <div class="button">
+          <?= kvframework_markup::link_to_function("Override Warning", "ajaxform('".self::url_for('appointment', 'create_form_process')."','confirm_form');") ?> |
+          <?= kvframework_markup::link_to_function("Cancel Appointment", "document.getElementById('concur_override_".$this->confirm_max_concur_which->loctag_id."').value = 'no'; ajaxform('".self::url_for('appointment', 'failed_confirm_concur')."','confirm_form');") ?>
+
+          <form id="confirm_form">
+          <input type="hidden" name="step" id="step" />
+          <input type="hidden" name="max_step" id="max_step" value="<?= $this->max_step ?>" />
+
+          <input type="hidden" name="date" id="date" value="<?= TOOLS::date_to_s($this->date) ?>" />
+          <input type="hidden" name="starttime" id="starttime" value="<?= TOOLS::time_to_s($this->start) ?>" />
+          <input type="hidden" name="stoptime" id="stoptime" value="<?= TOOLS::time_to_s($this->stop) ?>" />
+          <input type="hidden" name="consultant" id="consultant" value="<?= $this->thisguy->id ?>" />
+
+          <input type="hidden" name="fi[appttype_id]" id="fi[appttype_id]" value="<?= $this->appttype_id ?>" />
+          <input type="hidden" name="fi[repeat]" id="fi[repeat]" value="<?= $this->repeat ?>" />
+          <input type="hidden" name="fi[multi_user]" id="fi[multi_user]" value="<?= $this->multi_user ?>" />
+          <input type="hidden" name="fi[special2]" id="fi[special2]" value="<?= $this->special2 ?>" />
+
+          <input type="hidden" name="fi[enddate]" id="fi[enddate]" value="<?= ($this->enddate) ? TOOLS::date_to_s($this->enddate) : "" ?>" />
+          <input type="hidden" name="fi[repetition_week]" id="fi[repetition_week]" value="<?= $this->rep_week ?>" />
+          <input type="hidden" name="repetition_day" id="repetition_day" value="<?= implode(",",$this->rep_day) ?>" />
+
+          <?php if($this->reschedule) { ?>
+            <input type="hidden" name="reschedule" id="reschedule" value="<?= $this->reschedule ?>" />
+          <?php } ?>
+
+          <input type="hidden" name="fi[loc_id]" id="fi[loc_id]" value="<?= $this->loc_id ?>" />
+          <input type="hidden" name="fi[locdetails]" id="fi[locdetails]" value="<?= $this->locdetails ?>" />
+
+          <?php if($this->thing) { ?>
+            <input type="hidden" name="tid" id="tid" value="<?= $this->thing->id ?>" />
+            <input type="hidden" name="ttype" id="ttype" value="<?= $this->thing->tm_type ?>" />
+          <?php } ?>
+          <?php if ($this->type == "Ticket") { ?>
+            <input type="hidden" name="fi[withperson]" id="fi[withperson]" value="<?= ($this->thing) ? $this->name : $this->withperson ?>" />
+            <input type="hidden" name="fi[phone]" id="fi[phone]" value="<?= $this->phone ?>" />
+            <input type="hidden" name="fi[altphone]" id="fi[altphone]" value="<?= $this->altphone ?>" />
+            <input type="hidden" name="fi[ticket]" id="fi[ticket]" value="<?= $this->ticket ?>" />
+          <?php } elseif ($this->type == "Meeting" || $this->type == "Meecket") { ?>
+            <input type="hidden" name="fi[subject]" id="fi[subject]" value="<?= $this->subject ?>" />
+          <?php } ?>
+          <input type="hidden" name="fi[details]" id="fi[details]" value="<?= $this->details ?>" />
+
+          <?php if ($this->foverride) { ?>
+            <input type="hidden" name="fi[foverride]" id="fi[foverride]" value="yes" />
+          <?php } else { ?>
+            <input type="hidden" name="fi[foverride]" id="fi[foverride]" value="no" />
+          <?php } ?>
+
+	  <?php
+	  foreach($this->concur_override as $loctag => $answ)
+	  { ?>
+	  <input type="hidden" name="concur_override[<?= $loctag ?>]" id="concur_override_<?=$loctag?>" value="yes" />
+	  <?php }
+	  ?>
+          <input type="hidden" name="concur_override[<?=$this->confirm_max_concur_which->loctag_id?>]" id="concur_override_<?=$this->confirm_max_concur_which->loctag_id?>" value="yes" />
+          <input type="hidden" name="length_override" id="length_override" value="<?= $this->length_override ?>" />
+          <input type="hidden" name="time_conf" id="time_conf" value="<?= $this->time_override ?>" />
+          <input type="hidden" name="finals_conf" id="finals_conf" value="<?= $this->finals_override ?>" />
+          <input type="hidden" name="dist_conf" id="dist_conf" value="<?= $this->far_override ?>" />
+          <input type="hidden" name="appthour_override" id="appthour_override" value="<?= $this->appthour_override ?>" />
+          <input type="hidden" name="gen_conf" id="gen_conf" value="<?= $this->gender_override ?>" />
+          <input type="hidden" name="other_consultants" id="other_consultants" value="<?= implode(",",$this->other_rcs) ?>" />
+          <input type="hidden" name="thisstep" id="thisstep" value="<?= $this->fccs ?>" />
+          </form>
+        </div>
+      </td>
+      <td class="spacer"></td>
+      <td class="rightward">
+        <?= $this->outputMessages() ?>
+        <?= $this->outputErrors() ?>
+      </td>
+    </tr>
+  </tbody>
+</table>

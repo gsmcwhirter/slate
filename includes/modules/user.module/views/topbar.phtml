@@ -1,0 +1,15 @@
+  <?php if($this->connected) { ?>
+    <strong><?= self::session("username") ?></strong> -
+    <a href="<?= self::url_for("user","logout_form_process") ?>"><span>logout</span></a>
+    <?= kvframework_markup::link_to_remote("<span>change password</span>", array("update" => 'main_div', "url" => self::url_for('self_admin','change_password_form'), "loading" => 'doLoading(\'main\');')) ?>
+    <?php if(!is_null($this->rc)){ ?>
+      <?= kvframework_markup::link_to_remote("<span>My Schedule</span>", array("update" => 'main_div', "url" => self::url_for('display', 'display_date_full'), "loading" => 'doLoading(\'main\');', "complete" => 'windowload();')) ?>
+    <?php } ?>
+    <?php if($this->USER->access() >= ACCESS::modify) { ?>
+      <?= kvframework_markup::link_to_remote("<span>Admin</span>", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\');')) ?>
+    <?php } ?>
+  <?php } else { ?>
+    <strong>Welcome, Guest</strong> -
+    <a href="<?= self::url_for("user","login_form") ?>"><span>login</span></a>
+    <a href="<?= self::url_for("user","lost_password_form") ?>"><span>lost password</span></a>
+  <?php } ?>

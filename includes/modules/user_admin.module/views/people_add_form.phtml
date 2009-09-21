@@ -1,0 +1,28 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<form method="post" enctype="multipart/form-data" action="<?= self::url_for("user_admin", "process_mass_user_addition_form") ?>">
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Mass User Additions</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin','index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>File to Upload:</th>
+    <td><input type="hidden" name="MAX_FILE_SIZE" id="MAX_FILE_SIZE" value="30000" /><input type="file" name="file" id="file" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></div></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="continue..." class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

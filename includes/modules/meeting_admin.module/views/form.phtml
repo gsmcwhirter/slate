@@ -1,0 +1,117 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('meeting_admin', 'process_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Creating a new Meeting</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Date:</th>
+    <td><?= TOOLS::date_select(array("selected" => ($this->date) ? $this->date : TOOLS::date_today(), "name" => "fi[startdate]", "start_year" => TOOLS::year_for(TOOLS::date_today()), "end_year" => TOOLS::year_for(TOOLS::date_today()) + 5, "class" => '')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Start Time:</th>
+    <td><?= TOOLS::mytime_select(array("selected" => (($this->start) ? $this->start : null), "name" => "fi[starttime]", "on_minutes" => 30, "include_59" => false)) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>End Time:</th>
+    <td><?= TOOLS::mytime_select(array("selected" => (($this->stop) ? $this->stop : null), "name" => "fi[stoptime]", "on_minutes" => 30, "include_59" => false)) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Location:</th>
+    <td><?= kvframework_markup::select(array("name" => "fi[loc_id]", "values" => $this->all_locs, "prompt" => true, "selected" => (($this->location) ? $this->location->location_id : null), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Details:</th>
+    <td><input type="text" name="fi[locdetails]" id="fi[locdetails]" class="txtbox1" value="<?= ($this->locdetails) ? $this->locdetails : "" ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Subject:</th>
+    <td><input type="text" name="fi[subject]" id="fi[subject]" class="txtbox1" value="<?= ($this->subject) ? $this->subject : "" ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Description:</th>
+    <td><textarea name="fi[details]" id="fi[details]" class="txtbox4" cols="60" rows="10"><?= preg_replace("#<br />#","\n", ($this->descrip) ? $this->descrip : "") ?></textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Attendees:</th>
+    <td><?= kvframework_markup::select(array("name" => "other_consultants[]", "values" => $this->all_rcs, "selected" => ((is_array($this->other_rcs)) ? $this->other_rcs : array()), "class" => 'txtbox2', "size" => 10, "multiple" => 'multiple')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Repeating:</th>
+    <td><?= kvframework_markup::select(array("name" => "fi[repeat]", "values" => array(array("Yes", "TRUE"),array("No", "FALSE")), "selected" => (($this->repeat) ? $this->repeat : "FALSE"), "class" => 'txtbox2', "onchange" => "toggle_display('meeting_admin','hide1','hide1a','hide2','hide2a','hide3','hide3a');")) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top" id="hide1" style="display:none;">
+    <th>Rep Weeks:</th>
+    <td><?= kvframework_markup::select(array("name" => "fi[repetition_week]", "values" => TOOLS::array_collect(TOOLS::int_range(1,10), '$r', 'array($r, (string)$r)'), "selected" => (($this->rep_week) ? $this->rep_week : 1 ), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr id="hide1a" style="display:none;">
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top" id="hide2" style="display:none;">
+    <th>Rep Days:</th>
+    <td><?= kvframework_markup::select(array("name" => "repetition_day[]", "values" => array(array("Monday", "M"),array("Tuesday", "T"),array("Wednesday", "W"),array("Thursday", "H"),array("Friday", "F"),array("Saturday", "S"),array("Sunday","N")), "selected" => ((is_array($this->rep_day) && count($this->rep_day) != 0) ? $this->rep_day : array(TOOLS::weekday_transform(TOOLS::wday_for(TOOLS::date_today())))), "class" => 'txtbox2', "size" => 7, "multiple" => 'multiple')) ?></td>
+  </tr>
+  <tr id="hide2a" style="display:none;">
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top" id="hide3" style="display:none;">
+    <th>End Date:</th>
+    <td class="date_selector"><?= TOOLS::date_select(array("selected" => ($this->enddate) ? $this->enddate : TOOLS::date_today(), "name" => "fi[enddate]", "start_year" => TOOLS::year_for(TOOLS::date_today()), "end_year" => TOOLS::year_for(TOOLS::date_today()) + 5 )) ?></td>
+  </tr>
+  <tr id="hide3a" style="display:none;">
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="add new meeting" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>

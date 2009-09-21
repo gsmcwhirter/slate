@@ -1,0 +1,48 @@
+<?= kvframework_markup::form_remote_tag(array("update" => 'box', "url" => self::url_for('ticket', 'process_modify_thing_form'), 302 => 'hideBox(false);')) ?>
+<table border="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="leftward">
+        <div class="title"><h1>Modify Ticket</h1><div class="cancelbutton"><a href="#" onclick="hideBox(false);">cancel</a></div></div>
+        <div id="insetbox">
+          <div id="leftpane">
+            <div class="line">Person</div>
+            <div class="line2">
+            <input type="text" name="fi[person]" id="fi[person]" class="txtbox" value="<?= (array_key_exists("fi", self::$PARAMS) && is_array(self::$PARAMS["fi"]) && array_key_exists("person", self::$PARAMS["fi"])) ? self::$PARAMS["fi"]["person"] : $this->thing->person ?>" />
+            </div>
+
+            <div class="line">Primary Phone</div>
+            <div class="line2">
+            <input type="text" name="fi[phone]" id="fi[phone]" class="txtbox" value="<?= (array_key_exists("fi", self::$PARAMS) && is_array(self::$PARAMS["fi"]) && array_key_exists("phone", self::$PARAMS["fi"])) ? self::$PARAMS["fi"]["phone"] : $this->thing->phone ?>" />
+            </div>
+
+            <div class="line">Cell Phone</div>
+            <div class="line2">
+            <input type="text" name="fi[altphone]" id="fi[altphone]" class="txtbox" value="<?= (array_key_exists("fi", self::$PARAMS) && is_array(self::$PARAMS["fi"]) && array_key_exists("altphone", self::$PARAMS["fi"])) ? self::$PARAMS["fi"]["altphone"] : $this->thing->altphone ?>" />
+            </div>
+
+            <div class="line">Ticket #</div>
+            <div class="line2">
+            <input type="text" name="fi[remedy_ticket]" id="fi[remedy_ticket]" class="txtbox" value="<?= (array_key_exists("fi", self::$PARAMS) && is_array(self::$PARAMS["fi"]) && array_key_exists("remedy_ticket", self::$PARAMS["fi"])) ? self::$PARAMS["fi"]["remedy_ticket"] : $this->thing->remedy_ticket ?>" />
+            </div>
+
+            <div class="line">Description</div>
+            <div class="line2">
+            <textarea name="fi[description]" id="fi[description]" cols="50" rows="10" class="txtbox3"><?= preg_replace("#<br />#","\n", (array_key_exists("fi", self::$PARAMS) && is_array(self::$PARAMS["fi"]) && array_key_exists("description", self::$PARAMS["fi"])) ? self::$PARAMS["fi"]["description"] : $this->thing->description) ?></textarea>
+            </div>
+
+          </div>
+        </div>
+        <div class="button"><input type="submit" value="save" class="btn" /></div>
+      </td>
+      <td class="spacer"></td>
+      <td class="rightward">
+        <?= $this->outputMessages() ?>
+        <?= $this->outputErrors() ?>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<input type='hidden' name="tid" id="tid" value="<?= $this->thing->tm_id ?>" />
+<input type="hidden" name="ttype" id="ttype" value="<?= $this->thing->tm_type ?>" />
+</form>

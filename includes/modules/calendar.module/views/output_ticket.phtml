@@ -1,0 +1,28 @@
+<?= $this->outputErrors1() ?>
+<?= $this->outputMessages1() ?>
+
+<div id="formwrap">
+
+<p><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('calendar', 'display_date_full'), "loading" => "doLoading('main');", "complete" => "windowload();")) ?>
+
+<p><a href='<?= CONFIG::rooturl ?>/pdf/<?= $this->pdf ?>'>PDF version</a></p>
+
+  <p><strong>Lists</strong><ul>
+  <?php foreach($this->op_data["output"] as $ticket => $stat_report){
+    ksort($stat_report);
+    ?>
+    <strong>Ticket: <?= $ticket ?></strong>
+    <ul>
+    <?php foreach($stat_report as $appt_hash){
+      ?>
+      <?= $this->page_display_appt_list_out($appt_hash) ?>
+      <?php
+    }
+    ?>
+    </ul><br />
+    <?php
+  }
+  ?>
+  </ul></p>
+
+</div>

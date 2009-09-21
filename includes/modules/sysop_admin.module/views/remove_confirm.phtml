@@ -1,0 +1,28 @@
+<div id="formwrap">
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Removing a SysOp</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin','index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <td colspan="2">Are you sure you want to remove this SysOp?</td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+ <tr align="left" valign="top">
+    <td colspan="2"><?= Sysop::select_name($this->thisguy) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <td colspan="2">&raquo; <?= kvframework_markup::link_to_remote("Yes", array("update" => 'main_div', "url" => self::url_for('sysop_admin', 'process_remove_confirm', array("confirm" => 'yes', "sid" => $this->thisguy->username)), "loading" => 'doLoading(\'main\')')) ?><br />
+    &raquo; <?= kvframework_markup::link_to_remote("No", array("update" => 'main_div', "url" => self::url_for('sysop_admin', 'process_remove_confirm', array("confirm" => 'no', "sid" => $this->thisguy->username)), "loading" => 'doLoading(\'main\')')) ?></td>
+  </tr>
+</tbody>
+</table>
+</div>

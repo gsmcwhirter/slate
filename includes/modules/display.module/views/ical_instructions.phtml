@@ -1,0 +1,43 @@
+<div id="dating" class="clearfix">&nbsp;
+</div>
+<div id="formwrap">
+<p>
+Below is a link to which you can subscribe to view your appointment calendar.  This feature is still experimental.
+You should check your calendar on the scheduler itself if you have any doubts about anything.</p>
+<p>
+Google seems to be behaving better lately, though no guarantees there either.</p>
+<p>
+<?php
+  $rands = array();
+  //$uid = $this->userrcinfo("id");
+  $uid = $this->USER->rcinfo("id");
+  mt_srand((int)$uid);
+  $rands[0] = mt_rand(10000000,99999999);
+  $rands[1] = mt_rand(10000000,99999999);
+?>
+Link: <a href='<?= CONFIG::rooturl ?>/c:ical/:id:<?= TOOLS::leftzeropad($rands[0], 8) ?><?= $uid ?><?= TOOLS::leftzeropad($rands[1], 8) ?>/cal.ics'><?= CONFIG::rooturl ?>/c:ical/:id:<?= TOOLS::leftzeropad($rands[0], 8) ?><?= $uid ?><?= TOOLS::leftzeropad($rands[1], 8) ?>/cal.ics</a>
+</p>
+
+<p><strong>Outlook Calendars</strong><br />
+Outlook, as many have noted, does not have native integration for iCal subscriptions. There are some alternatives in the works.  Among current options are the following:<br />
+<ul>
+<li>
+Outlook 2007 - This edition of Outlook claims to have iCal subscription abilities. There is a beta download from Microsoft for $1.50 at last check which is good until February 2007.
+</li>
+<li>
+RemoteCalendars - This is an opensource plug-in for Outlook 2003 which provides basic functionality. <?= kvframework_markup::link_to_remote("Load instructions", array("update" => 'rcal_div', "url" => self::url_for('display', 'remotecal_instructions'), "loading" => "doLoading('rcal')")) ?> for using it.
+</li>
+</ul>
+
+</p>
+
+<div id="rcal_div">
+
+</div>
+
+<input type="hidden" name="date" id="date" value="<?= TOOLS::date_to_s(TOOLS::date_today()) ?>" />
+<input type="hidden" name="tddate" id="tddate" value="<?= TOOLS::date_to_s(TOOLS::date_today()) ?>" />
+<input type="hidden" name="nddate" id="nddate" value="<?= TOOLS::date_to_s(TOOLS::date_today()) ?>" />
+<input type="hidden" name="pddate" id="pddate" value="<?= TOOLS::date_to_s(TOOLS::date_today()) ?>" />
+
+</div>

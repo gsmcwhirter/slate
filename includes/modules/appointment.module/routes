@@ -1,0 +1,17 @@
+delete => delete_appointment
+modify => modify_appointment
+delete/process => process_delete_form
+modify/process => process_modify_form
+new/process => create_form_process
+new => create_form
+reschedule => reschedule_appointment
+reschedule/select => process_reschedule_select
+aconfirm/far => confirm_far_away
+aconfirm/gender => confirm_gender
+aconfirm/time => confirm_time
+aconfirm/concur => confirm_concur
+aconfirm/far/failed => failed_confirm_far
+aconfirm/gender/failed => failed_confirm_gender
+aconfirm/time/failed => failed_confirm_time
+aconfirm/concur/failed => failed_confirm_concur
+details => view_appointment

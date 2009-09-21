@@ -1,0 +1,87 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array( "update" => 'main_div', "url" => self::url_for('system_admin', 'process_warning_override_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Appointment Overrides Configuration</div><div style="float:right"><?= kvframework_markup::link_to_remote( "cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Randomize Threshold:</th>
+    <td>
+    <?= kvframework_markup::select(array("name" => "form[override_randomlist]", "values" => array(array("None", ACCESS::user),array("Helpdesk", ACCESS::modify),array("Supervisors & Helpdesk", ACCESS::sysop)), "selected" => $this->value_for_override("randomlist"), "class" => 'txtbox2')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Concurrent Appointments:</th>
+    <td>
+    <?= kvframework_markup::select(array("name" => "form[override_concur]", "values" => array(array("Helpdesk", ACCESS::user),array("Supervisor", ACCESS::modify),array("Sysop", ACCESS::sysop)), "selected" => $this->value_for_override("concur"), "class" => 'txtbox2')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Appointment Distance:</th>
+    <td>
+    <?= kvframework_markup::select(array("name" => "form[override_far]", "values" => array(array("Helpdesk", ACCESS::user),array("Supervisor", ACCESS::modify),array("Sysop", ACCESS::sysop)), "selected" => $this->value_for_override("far"), "class" => 'txtbox2')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Location Gender:</th>
+    <td>
+    <?= kvframework_markup::select(array("name" => "form[override_gender]", "values" => array(array("Helpdesk", ACCESS::user),array("Supervisor", ACCESS::modify),array("Sysop", ACCESS::sysop)), "selected" => $this->value_for_override("gender"), "class" => 'txtbox2')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Appointment Length:</th>
+    <td>
+    <?= kvframework_markup::select(array("name" => "form[override_length]", "values" => array(array("Helpdesk", ACCESS::user),array("Supervisor", ACCESS::modify),array("Sysop", ACCESS::sysop)), "selected" => $this->value_for_override("length"), "class" => 'txtbox2')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Scheduling Time:</th>
+    <td>
+    <?= kvframework_markup::select(array("name" => "form[override_time]", "values" => array(array("Helpdesk", ACCESS::user),array("Supervisor", ACCESS::modify),array("Sysop", ACCESS::sysop)), "selected" => $this->value_for_override("time"), "class" => 'txtbox2')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Finals Week:</th>
+    <td>
+    <?= kvframework_markup::select(array("name" => "form[override_finals]", "values" => array(array("Helpdesk", ACCESS::user),array("Supervisor", ACCESS::modify),array("Sysop", ACCESS::sysop)), "selected" => $this->value_for_override("finals"), "class" => 'txtbox2')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save this data" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

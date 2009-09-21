@@ -1,0 +1,2 @@
+change_pass => change_password_form
+do_change_pass => process_change_password

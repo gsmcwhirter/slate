@@ -1,0 +1,28 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<div class="titler" style="float:left;">Viewing Appointment Hours</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div><br />&nbsp;<br />
+<?= kvframework_markup::form_remote_tag(array("id" => "rc_form", "update" => 'main_div', "url" => self::url_for('appthour_admin', 'view'), "loading" => "doLoading('main');")) ?>
+Type: <?= kvframework_markup::select(array("name" => "appttype_id", "values" => $this->all_apts, "include_blank" => true, "selected" => null, "class" => 'txtbox2')) ?><br />
+Semester: <?= kvframework_markup::select(array("name" => "sem_id", "values" => $this->all_sems, "include_blank" => true, "selected" => null, "class" => 'txtbox2')) ?><br />-or-<br />
+Dates: <input type="text" name="sdate" id="sdate" value="" size="10" /> -
+<input type="text" name="pdate" id="pdate" value="" size="10" />
+<input type="submit" value="change view" class="txtbox3" />
+</form>
+<?php if($this->view_any){
+  ?>
+  <p>
+  Viewing Appointment Type: <?= Appttype::select_name($this->sel_appttype) ?><br />
+  Viewing Dates: <?= TOOLS::date_to_s($this->startd) ?> to <?= TOOLS::date_to_s($this->stopd) ?> <?= ($this->sem) ? "(".$this->sem->name.")" : "" ?>
+  </p>
+  <p><ul>
+    <?php foreach($this->oh_res as $hour){ ?>
+    <li style="background-color: <?= ($hour->htype == "delete") ? "#ffcccc" : "#d7f0db" ?>">
+    <?= TOOLS::time_to_s(TOOLS::string_to_time($hour->starttime), true) ?> - <?= TOOLS::time_to_s(TOOLS::string_to_time($hour->stoptime), true) ?> <?= $hour->repeat ?> :: <?= ($this->startd > TOOLS::string_to_date($hour->startdate)) ? TOOLS::date_to_s($this->startd) : $hour->startdate ?> - <?= ($this->stopd < TOOLS::string_to_date($hour->stopdate)) ? TOOLS::date_to_s($this->stopd) : $hour->stopdate ?>
+    </li>
+    <?php } ?>
+  </ul></p>
+  <?php
+} ?>
+</div>

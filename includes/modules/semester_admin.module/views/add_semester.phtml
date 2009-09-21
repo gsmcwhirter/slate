@@ -1,0 +1,46 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('semester_admin', 'process_add_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Adding a new Semester</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin','index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Name:</th>
+    <td><input type="text" name="form[name]" id="form[name]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("name",self::$PARAMS["form"])) ? self::$PARAMS["form"]["name"] : "" ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Start Date:</th>
+    <td>
+    <?= TOOLS::date_select(array("selected" => (array_key_exists("date",self::$PARAMS) && is_array(self::$PARAMS["date"]) && array_key_exists("startdate", self::$PARAMS["date"]) && is_array(self::$PARAMS["date"]["startdate"])) ? TOOLS::string_to_date(implode("-", self::$PARAMS["date"]["startdate"])) : null, "name" => "date[startdate]", "start_year" => (int)TOOLS::year_for(TOOLS::date_today()), "end_year" => (int)TOOLS::year_for(TOOLS::date_today()) + 5, "class" => '')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>End Date:</th>
+    <td>
+    <?= TOOLS::date_select(array("selected" => (array_key_exists("date",self::$PARAMS) && is_array(self::$PARAMS["date"]) && array_key_exists("stopdate", self::$PARAMS["date"]) && is_array(self::$PARAMS["date"]["stopdate"])) ? TOOLS::string_to_date(implode("-", self::$PARAMS["date"]["stopdate"])) : null, "name" => "date[stopdate]", "start_year" => (int)TOOLS::year_for(TOOLS::date_today()), "end_year" => (int)TOOLS::year_for(TOOLS::date_today()) + 5, "class" => '')) ?>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="add semester" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

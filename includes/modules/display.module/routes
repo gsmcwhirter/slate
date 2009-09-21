@@ -1,0 +1,7 @@
+=> main
+main => display_date_full
+yes => display_date_part
+select => display_select
+details => view_appointment
+help/ical => ical_instructions
+help/remote => remotecal_instructions

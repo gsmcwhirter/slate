@@ -1,0 +1,49 @@
+    <div id="menu">
+      <div style="float:left;" class="menu-style">
+
+        <!-- Insert Selector Here -->
+      </div>
+      <div style="float:right;" class="menu-style">
+        <a href="#" onclick="linktoweek2(document.getElementById('date').value, '<?= self::url_for('display_admin', 'display_date_part', array("rcid" => $this->rc_id)) ?>');"><span>Refresh</span></a>
+      </div>
+    </div>
+    <div id="grid-1">
+    <div id="calendar_div">
+      <div id="dating" class="clearfix"><div style="float:left;"><?= TOOLS::day_for($this->weekinfo["start"]) ?> <?= TOOLS::month_name_for(TOOLS::month_for($this->weekinfo["start"])) ?> <?= TOOLS::year_for($this->weekinfo["start"]) ?> to <?= TOOLS::day_for($this->weekinfo["stop"]) ?> <?= TOOLS::month_name_for(TOOLS::month_for($this->weekinfo["stop"])) ?> <?= TOOLS::year_for($this->weekinfo["stop"]) ?></div></div>
+      <div id="gridcover">
+      <?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('display_admin', 'display_date_full'), "loading" => 'doLoading(\'main\');', "complete" => 'windowload();')) ?>
+      <?= kvframework_markup::select(array("name" => "rcid", "values" => $this->all_rcs, "prompt" => true, "selected" => (array_key_exists("rcid", self::$PARAMS)) ? self::$PARAMS["rcid"] : null, "class" => 'txtbox2')) ?> <input type="submit" value="change view" class="txtbox3" />
+      </form>
+      <form method="POST" action="<?= self::url_for('display_admin', 'display_date_full')?>" id="calendar_form">
+      <div id="calendar2_div">
+      <?php $this->render_inline("calendar") ?>
+      </div>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div id="grid-2">
+      <?= $this->daySelectOutput() ?>
+      <div id="grid-3a">
+      </div>
+
+      <div id="grid-3" style="float:right;">
+      <div id="wrapper">
+        <div id="sysmsg">
+          <div class="header">System Messages</div>
+          <div id="msg"><?= $this->outputErrors() ?><?= $this->outputMessages() ?></div>
+        </div>
+
+        <div id="details">
+          <div class="header clearfix">
+            <div style="float:left;">Details</div>
+            <div style="float:right;"><a href="#" onclick="clearDetails();">X</a></div>
+          </div>
+          <div id="dets" class="msg2">
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</form>

@@ -1,0 +1,54 @@
+    <div id="menu">
+    <div style="float:left;" class="menu-style">
+      </div>
+    </div>
+
+    <div id="grid-1">
+    <div id="calendar_div">
+    <div id="dating">&nbsp;Showing Dates: <?= TOOLS::date_to_s($this->startd) ?> to <?= TOOLS::date_to_s($this->stopd) ?>
+    </div>
+    <div id="gridcover">
+    <?= kvframework_markup::form_remote_tag(array("id" => "rc_form", "update" => 'main_div', "url" => self::url_for('consultanthour_admin', 'display_week'), "loading" => "doLoading('main');", "complete" => 'windowload2();')) ?>
+        <?= kvframework_markup::select(array("name" => "rc[id]", "values" => $this->all_rcs, "prompt" => true, "selected" => ($this->consultant) ? $this->consultant->consultant_id : null, "class" => 'txtbox2')) ?> |
+        <?= kvframework_markup::select(array("name" => "rc[sem_id]", "values" => $this->all_sems, "include_blank" => true, "selected" => null, "class" => 'txtbox2')) ?>
+        <input type="text" name="sdate" id="sdate" value="" size="10" />
+        <input type="text" name="pdate" id="pdate" value="" size="10" />
+        <input type="submit" value="change view" class="txtbox3" />
+        </form><br />
+        <form name="calendar_form" id="calendar_form" method="POST">
+        <input type="hidden" name="changes_oncall" id="changes_oncall" value="no" /><input type="checkbox" name="changes_oncall" id="changes_oncall" value="yes" <?= (array_key_exists("changes_oncall", self::$PARAMS) && self::$PARAMS["changes_oncall"] == "yes") ? "checked='checked'" : "" ?>/> Additions are ONCALL<br />
+    <?php $this->render_inline("calendar") ?>
+    </form>
+    </div>
+  </div>
+    </div>
+
+
+    <div id="grid-2">
+      <div id="grid-2a">
+      </div>
+      <div id="grid-2b">
+        <div id="selector_div">
+        </div>
+      </div>
+      <div id="grid-3a">
+      </div>
+
+      <div id="grid-3" style="float:right;">
+      <div id="wrapper">
+        <div id="sysmsg">
+          <div class="header">System Messages</div>
+          <div id="msg"><?= $this->outputErrors() ?><?= $this->outputMessages() ?></div>
+        </div>
+
+        <div id="details">
+          <div class="header clearfix">
+            <div style="float:left;">Details</div>
+            <div style="float:right;"><a href="#" onclick="clearDetails();">X</a></div>
+          </div>
+          <div id="dets" class="msg2">&nbsp;
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>

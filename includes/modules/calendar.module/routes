@@ -1,0 +1,5 @@
+main => display_date_full
+yes => display_date_part
+select => display_select
+ticket => form_ticket
+do_ticket => process_ticket

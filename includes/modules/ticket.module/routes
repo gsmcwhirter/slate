@@ -1,0 +1,4 @@
+modify => modify_thing_form
+modify/process => process_modify_thing_form
+delete => delete_thing_form
+delete/process => process_delete_thing_form

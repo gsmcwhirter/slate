@@ -1,0 +1,58 @@
+<table border="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="leftward">
+        <div class="title"><h1>Deleting Appointment</h1><div class="cancelbutton"><a href="#" onclick="hideBox(false);">cancel</a></div></div>
+        <div id="insetbox">
+          <div id="leftpane">
+            Are you sure you want to cancel the following appointment?<br />
+            <span class="note">If there is more than one consultant assigned to the appointment, only this one will be removed, and the entire appointment will be deleted if there are no more consultants available</span><br /><br />
+
+            <h2>Appointment Information</h2>
+
+            <div class="line">Consultant</div>
+            <div class="line_txt"><?= $this->rc->realname ?></div>
+
+            <div class="line">Date and Time</div>
+            <div class="line_txt"><?= self::$PARAMS["adate"] ?> from <?= TOOLS::time_to_s(TOOLS::string_to_time($this->appointment->starttime), true) ?> to <?= TOOLS::time_to_s(TOOLS::string_to_time($this->appointment->stoptime), true) ?></div>
+
+            <div class="line">Location (Zone)</div>
+            <div class="line_txt"><?= $this->appointment->location_name ?> (<?= $this->appointment->loczone_name ?> AREA) - <?= $this->appointment->locdetails ?></div>
+
+            <?php if ($this->appointment->repeat == "TRUE") { ?>
+            <div class="line">Repetition</div>
+            <div class="line_txt">Every <?= ($this->appointment->repetition_week == 1) ? "week" : $this->appointment->repetition_week." weeks" ?> on <?= implode(", ", TOOLS::array_collect(explode(",", $this->appointment->repetition_day), '$i', 'TOOLS::$dayabbrs[TOOLS::weekday_reverse($i)]')) ?><br />From <?= $this->appointment->startdate ?> until <?= $this->appointment->stopdate ?></div>
+            <?php } ?>
+          </div>
+        </div>
+        <div class="button">
+          <?php if (!$this->types[0] and !$this->types[1]) { ?>
+          <?= kvframework_markup::link_to_remote("Delete This Appointment", array("update" => 'box', "url" => self::url_for('appointment','process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'general', "confirm_scale" => 'all', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Don't Delete", array("update" => 'box', "url" => self::url_for('appointment','process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'no', "confirm_type" => 'general', "confirm_scale" => 'all', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?>
+          <?php } elseif (!$this->types[0] and $this->types[1]) { ?>
+          <?= kvframework_markup::link_to_remote("Delete Only this Occurrence", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'general', "confirm_scale" => 'once', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Delete All Occurrences", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'general', "confirm_scale" => 'all', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Don't Delete", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'no', "confirm_type" => 'general', "confirm_scale" => 'once', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?>
+          <?php } elseif ($this->types[0] and !$this->types[1]) { ?>
+          <?= kvframework_markup::link_to_remote("Delete For Only this consultant", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'general', "confirm_scale" => 'all', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Delete For All consultants", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'multi', "confirm_scale" => 'all', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Don't Delete", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'no', "confirm_type" => 'multi', "confirm_scale" => 'once', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?>
+          <?php } elseif ($this->types[0] and $this->types[1]) { ?>
+          This Occurrence:
+          <?= kvframework_markup::link_to_remote("Delete For Only this consultant", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'general', "confirm_scale" => 'once', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Delete For All consultants", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'multi', "confirm_scale" => 'once', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Don't Delete", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'no', "confirm_type" => 'multi', "confirm_scale" => 'once', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?><br />
+          All Occurrences:
+          <?= kvframework_markup::link_to_remote("Delete For Only this consultant", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'general', "confirm_scale" => 'all', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("Delete For All consultants", array("update" => 'box', "url" => self::url_for('appointment', 'process_delete_form', array("aid" => $this->appointment->appointment_id, "rid" => $this->rc->consultant_id, "confirm_delete" => 'yes', "confirm_type" => 'multi', "confirm_scale" => 'all', "adate" => self::$PARAMS["adate"])), 302 => 'hideBox(false);')) ?>
+          <?php } ?>
+        </div>
+      </td>
+      <td class="spacer"></td>
+      <td class="rightward">
+        <?= $this->outputMessages() ?>
+        <?= $this->outputErrors() ?>
+      </td>
+    </tr>
+  </tbody>
+</table>

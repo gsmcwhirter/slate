@@ -1,0 +1,63 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('self_admin', 'process_change_password'), "complete" => 'windowload();')) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Changing your Password</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('user', 'reload'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Current:</th>
+    <td><input type="password" name="oldpass" id="oldpass" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>New:</th>
+    <td><input type="password" name="password" id="password" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>New (confirm):</th>
+    <td><input type="password" name="password_confirmation" id="password_confirmation" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <?php //if($this->userinfo("f:usertype") == "helpdeskers" and $this->userinfo("acdaccount") == "yes"){ ?>
+  <?php if($this->USER->usertype() == "helpdeskers" and $this->USER->info("acdaccount") == "yes"){ ?>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Admin Username:</th>
+    <td><input type="text" name="admin_un" id="admin_un" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Admin Password:</th>
+    <td><input type="password" name="admin_pass" id="admin_pass" class="txtbox1" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <?php } ?>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="Change your password" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

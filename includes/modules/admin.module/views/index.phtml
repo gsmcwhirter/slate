@@ -1,0 +1,195 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap" class="clearfix">
+  <div style="width:110px;margin-right:9px;float:left;border-right:1px solid #e4e4e4;">
+  <table cellspacing="0" style="width:110px;">
+  <tbody>
+    <tr align="left" valign="center">
+    <td class="title"><div class="titler" style="float:left;">Users</div></td>
+    </tr>
+    <tr>
+    <td class="spacer"></td>
+    </tr>
+    <tr align="left" valign="top">
+    <td>
+      <ul>
+        <li><strong>Consultants</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Status", array("update" => 'main_div', "url" => self::url_for('consultant_admin',  'status_form'), "loading" => 'doLoading(\'main\');')) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('consultant_admin', 'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('consultant_admin', 'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('consultant_admin', 'delete_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>Consultant Hours</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Modify", array("update" => 'main_div', "url" => self::url_for('consultanthour_admin',  'form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Better Modify", array("update" => 'main_div', "url" => self::url_for('consultanthour_admin',  'display_week'), "loading" => 'doLoading(\'main\');', "complete" => 'windowload2();')) ?></li>
+          <li><?= kvframework_markup::link_to_remote("View", array("update" => 'main_div', "url" => self::url_for('display_admin',  'display_date_full'), "loading" => 'doLoading(\'main\');', "complete" => 'windowload();')) ?></li>
+        </ul>
+        </li>
+        <li><strong>Supervisors</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('supervisor_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('supervisor_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('supervisor_admin',  'delete_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>HelpDesk</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('helpdesker_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('helpdesker_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('helpdesker_admin',  'delete_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>SysOps</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('sysop_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('sysop_admin',  'remove_form'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+
+  <div style="width:110px;margin-right:9px;float:left;border-right:1px solid #e4e4e4;">
+  <table cellspacing="0" style="width:110px;">
+  <tbody>
+    <tr align="left" valign="center">
+    <td class="title"><div class="titler" style="float:left;">Locations</div></td>
+    </tr>
+    <tr>
+    <td class="spacer"></td>
+    </tr>
+    <tr align="left" valign="top">
+    <td>
+      <ul>
+        <li><strong>Loczones</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('loczone_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('loczone_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('loczone_admin',  'remove_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>Locations</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('location_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('location_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('location_admin',  'remove_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+	<li><strong>Location Tags</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('loctag_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('loctag_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('loctag_admin',  'remove_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>Meta-Locations</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('metaloc_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('metaloc_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('metaloc_admin',  'remove_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+      </ul>
+    </td>
+    </tr>
+    <tr>
+    <td class="spacer"></td>
+    </tr>
+    <tr align="left" valign="center">
+    <td class="title"><div class="titler" style="float:left;">Reports</div></td>
+    </tr>
+    <tr>
+    <td class="spacer"></td>
+    </tr>
+    <tr align="left" valign="top">
+    <td>
+      <ul>
+        <li><?= kvframework_markup::link_to_remote("Percentages", array("update" => 'main_div', "url" => self::url_for('stats',  'form_percents'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Appointments", array("update" => 'main_div', "url" => self::url_for('stats',  'form_appttype'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Consultants", array("update" => 'main_div', "url" => self::url_for('stats',  'form_consultant'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Locations", array("update" => 'main_div', "url" => self::url_for('stats',  'form_metaloc'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Tickets", array("update" => 'main_div', "url" => self::url_for('stats',  'form_ticket'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Users", array("update" => 'main_div', "url" => self::url_for('stats',  'form_user'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Consultant Hours", array("update" => 'main_div', "url" => self::url_for('stats',  'consultanthours_report_form'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Run Saved", array("update" => 'main_div', "url" => self::url_for('stats',  'form_canned'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Remove Saved", array("update" => 'main_div', "url" => self::url_for('stats',  'form_uncanned'), "loading" => "doLoading('main')")) ?></li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+
+  <div style="width:110px;float:left;">
+  <table cellspacing="0" style="width:110px;">
+  <tbody>
+    <tr align="left" valign="center">
+    <td class="title"><div class="titler" style="float:left;">Other</div></td>
+    </tr>
+    <tr>
+    <td class="spacer"></td>
+    </tr>
+    <tr align="left" valign="top">
+    <td>
+      <ul>
+        <li><strong>OpHours</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Modify", array("update" => 'main_div', "url" => self::url_for('ophour_admin',  'form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("View", array("update" => 'main_div', "url" => self::url_for('ophour_admin',  'view'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>Semesters</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('semester_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('semester_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('semester_admin',  'delete_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>Tags</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Add", array("update" => 'main_div', "url" => self::url_for('tag_admin',  'add_form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('tag_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Remove", array("update" => 'main_div', "url" => self::url_for('tag_admin',  'remove_select'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+        <li><strong>ApptType Defaults</strong>
+        <ul>
+          <li><?= kvframework_markup::link_to_remote("Edit", array("update" => 'main_div', "url" => self::url_for('appttype_admin',  'edit_select'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Hours Edit", array("update" => 'main_div', "url" => self::url_for('appthour_admin',  'form'), "loading" => "doLoading('main')")) ?></li>
+          <li><?= kvframework_markup::link_to_remote("Hours View", array("update" => 'main_div', "url" => self::url_for('appthour_admin',  'view'), "loading" => "doLoading('main')")) ?></li>
+        </ul>
+        </li>
+      </ul>
+    </td>
+    </tr>
+    <tr>
+    <td class="spacer"></td>
+    </tr>
+    <tr align="left" valign="center">
+    <td class="title"><div class="titler" style="float:left;">Misc</div></td>
+    </tr>
+    <tr>
+    <td class="spacer"></td>
+    </tr>
+    <tr align="left" valign="top">
+    <td>
+      <ul>
+        <li><?= kvframework_markup::link_to_remote("System Settings", array("update" => 'main_div', "url" => self::url_for('system_admin',  'form'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Appointment Overrides", array("update" => 'main_div', "url" => self::url_for('system_admin',  'warning_override_form'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Meeting Creation", array("update" => 'main_div', "url" => self::url_for('meeting_admin',  'form'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Mass User Creation", array("update" => 'main_div', "url" => self::url_for('user_admin',  'mass_user_addition_form'), "loading" => "doLoading('main')")) ?></li>
+        <li><?= kvframework_markup::link_to_remote("Mass Password Reset", array("update" => 'main_div', "url" => self::url_for('user_admin',  'mass_password_reset_form'), "loading" => "doLoading('main')")) ?></li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+</div>

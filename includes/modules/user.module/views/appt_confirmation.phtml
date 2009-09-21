@@ -1,0 +1,106 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Appointment Confirmation</div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+<?php if ($this->current == "yes") { ?>
+  <tr align="left" valign="top">
+    <th>Consultant:</th>
+    <td><?= $this->rap->realname ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Date and Time:</th>
+    <td><?= $this->rap->startdate ?> <?= TOOLS::time_to_s(TOOLS::string_to_time($this->rap->starttime), true) ?>-<?= TOOLS::time_to_s(TOOLS::string_to_time($this->rap->stoptime), true) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <?php if ($this->rap->repeat == "TRUE") { ?>
+  <tr align="left" valign="top">
+    <td colspan="2"><strong>This appointment is a repeating appointment</strong></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Every:</th>
+    <td><?= ($this->rap->repetition_week == 1) ? "week" : $this->rap->repetition_week." weeks" ?> on <?= implode(", ", TOOLS::array_collect(explode(",", $this->rap->repetition_day), '$i', 'TOOLS::$dayabbrs[TOOLS::weekday_reverse($i)]')) ?> from <?= $this->rap->startdate ?> until <?= $this->rap->stopdate ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <?php } ?>
+  <tr align="left" valign="top">
+    <th>Location:</th>
+    <td><?= $this->rap->location_name ?> <?= $this->rap->locdetails ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <?php if ($this->rap->tm_type == "Ticket") { ?>
+  <tr align="left" valign="top">
+    <th>User:</th>
+    <td><?= $this->rap->tm->person ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Main Phone:</th>
+    <td><?= $this->rap->tm->phone ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Alt Phone:</th>
+    <td><?= $this->rap->tm->altphone ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <tr align="left" valign="top">
+    <th>Remedy Ticket:</th>
+    <td><?= $this->rap->tm->remedy_ticket ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+
+  <?php } elseif ($this->rap->tm_type == "Meeting" or $this->rap->tm_type == "Meecket") { ?>
+  <tr align="left" valign="top">
+    <th>Subject:</th>
+    <td><?= $this->rap->tm->subject ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <?php } ?>
+  <tr align="left" valign="top">
+    <th>Description:</th>
+    <td><?= $this->rap->tm->description ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+<?php } else { ?>
+  <tr align="left" valign="top">
+    <td colspan="2">This link is not for the most up-to-date version of this appointment.  Please check your e-mail for a link to confirm the most up-to-date version.</td>
+  </tr>
+<?php } ?>
+</tbody>
+</table>
+</div>

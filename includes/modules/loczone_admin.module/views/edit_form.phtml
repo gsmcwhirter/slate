@@ -1,0 +1,43 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('loczone_admin', 'process_edit_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Editing a Loczone</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Name:</th>
+    <td><input type="text" name="form[name]" id="form[name]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("name", self::$PARAMS["form"])) ? self::$PARMAS["form"]["name"] : $this->thisthing->name ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Potential H:</th>
+    <td><input type="text" name="form[potentialh]" id="form[potentialh]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("potentialh", self::$PARAMS["form"])) ? self::$PARMAS["form"]["potentialh"] : $this->thisthing->potentialh ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Potential V:</th>
+    <td><input type="text" name="form[potentialv]" id="form[potentialv]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("potentialv", self::$PARAMS["form"])) ? self::$PARMAS["form"]["potentialv"] : $this->thisthing->potentialv ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save this data" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+<input type="hidden" name="lzid" id="lzid" value="<?= $this->thisthing->loczone_id ?>" />
+</form>
+</div>

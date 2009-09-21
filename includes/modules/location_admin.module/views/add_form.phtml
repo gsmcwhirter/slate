@@ -1,0 +1,63 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('location_admin', 'process_add_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Adding a new Location</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Name:</th>
+    <td><input type="text" name="form[name]" id="form[name]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("name", self::$PARAMS["form"])) ? self::$PARAMS["form"]["name"] : null ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>App. type:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[appttype_id]", "values" => $this->all_ats, "prompt" => true, "selected" => ((array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("appttype_id", self::$PARAMS["form"])) ? self::$PARAMS["form"]["appttype_id"] : null), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Location zone:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[loczone_id]", "values" => $this->all_lzs, "prompt" => true, "selected" => ((array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("loczone_id", self::$PARAMS["form"])) ? self::$PARAMS["form"]["loczone_id"] : null), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Gender check:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[restrict_gender]", "values" => array(array("None", "FALSE"),array("Male", "M"),array("Female", "F")), "prompt" => false, "selected" => ((array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("restrict_gender", self::$PARAMS["form"])) ? self::$PARAMS["form"]["restrict_gender"] : "FALSE"), "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Meta-Locations:</th>
+    <td><?= kvframework_markup::select(array("name" => "metalocs[]", "values" => $this->all_mls, "selected" => ((array_key_exists("metalocs", self::$PARAMS) && is_array(self::$PARAMS["metalocs"])) ? self::$PARAMS["metalocs"] : null), "multiple" => true, "size" => 5, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Location Tags:</th>
+    <td><?= kvframework_markup::select(array("name"=> "loctags[]","values" => $this->all_ltgs,"selected" => ((array_key_exists("loctags", self::$PARAMS) && is_array(self::$PARAMS["loctags"])) ? self::$PARAMS["loctags"] : null), "multiple" => true, "size" => 5, "class" => 'txtbox2' )) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save this data" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+</form>
+</div>

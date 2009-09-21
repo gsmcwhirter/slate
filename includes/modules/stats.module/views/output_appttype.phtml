@@ -1,0 +1,43 @@
+<?= $this->outputErrors1() ?>
+<?= $this->outputMessages1() ?>
+
+<div id="formwrap">
+<p><a href='<?= CONFIG::rooturl ?>/pdf/<?= $this->pdf ?>'>PDF version</a></p>
+
+<?php
+if(array_key_exists("number", $this->op_data) && is_array($this->op_data["number"])){
+  ?>
+  <p><strong>Counts</strong><ul>
+    <?php foreach($this->op_data["number"]["output"] as $at_name => $stat_report){ ?>
+      <?= ucwords($at_name) ?>: <?= $stat_report ?><br />
+    <?php } ?>
+    Total: <?= $this->op_data["number"]["Total"] ?><br />
+  </ul></p>
+  <?php
+}
+?>
+
+<?php
+if(array_key_exists("list", $this->op_data) && is_array($this->op_data["list"])){
+  ?>
+  <p><strong>Lists</strong><ul>
+  <?php foreach($this->op_data["list"]["output"] as $atname => $stat_report){
+    ksort($stat_report);
+    ?>
+    <strong>Type: <?= $atname ?></strong>
+    <ul>
+    <?php foreach($stat_report as $appt_hash){
+      ?>
+      <?= $this->page_display_appt_list_out($appt_hash) ?>
+      <?php
+    }
+    ?>
+    </ul><br />
+    <?php
+  }
+  ?>
+  </ul></p>
+  <?php
+}
+?>
+</div>

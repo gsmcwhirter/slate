@@ -1,0 +1,49 @@
+<table border="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="leftward">
+        <div class="title"><h1>Deleting meeting</h1><div class="cancelbutton"><a href="#" onclick="hideBox(false);">cancel</a></div></div>
+        <div id="insetbox">
+          <div id="leftpane">
+            Are you sure you want to cancel the following meeting?<br />
+            <span class="note">This will remove all appointments associated with that ticket as well</span><br />
+
+            <h2>Ticket Information</h2>
+
+            <div class="line">Subject</div>
+            <div class="line_txt"><?= TOOLS::escape_quotes($this->thing->subject) ?></div>
+
+            <div class="line">Description</div>
+            <div class="line_txt"><?= TOOLS::escape_quotes($this->thing->description) ?></div>
+
+            <div class="line">Appointments</div>
+            <div class="line_txt"><ul>
+            <?php foreach($this->thing->appointments as $appt){ ?>
+            <?php if ($appt->special != "repeat_removal") { ?>
+            <li>
+            <?php if ($appt->repeat == "TRUE") { ?>
+            From <?= $appt->startdate ?> until <?= $appt->stopdate ?> <?= TOOLS::time_to_s(TOOLS::string_to_time($appt->starttime), true) ?> - <?= TOOLS::time_to_s(TOOLS::string_to_time($appt->stoptime), true) ?><br />
+            Repeating every <?= ($appt->repetition_week == 1) ? "week" : $appt->repetition_week." weeks" ?> on <?= implode(", ", TOOLS::array_collect(explode(",", $appt->repetition_day), '$i', 'TOOLS::$dayabbrs[TOOLS::weekday_reverse($i)]')) ?><br />
+            <?php } else { ?>
+            On <?= $appt->startdate ?> <?= TOOLS::time_to_s(TOOLS::string_to_time($appt->starttime), true) ?> - <?= TOOLS::time_to_s(TOOLS::string_to_time($appt->stoptime), true) ?><br />
+            <?php } ?>
+            Location: <?= $appt->locdetails ?> <?= $appt->location_name ?> (<?= $appt->loczone_name ?>)
+            </li>
+            <?php } ?>
+            <?php } ?>
+            </ul></div>
+          </div>
+        </div>
+        <div class="button">
+          <?= kvframework_markup::link_to_remote("Yes", array("update" => 'box', "url" => self::url_for('ticket', 'process_delete_thing_form', array("tid" => $this->thing->tm_id, "ttype" => $this->thing->tm_type, "confirm_delete" => 'yes')), 302 => 'hideBox(false);')) ?> |
+          <?= kvframework_markup::link_to_remote("No", array("update" => 'box', "url" => self::url_for('ticket', 'process_delete_thing_form', array("tid" => $this->thing->tm_id, "ttype" => $this->thing->tm_type, "confirm_delete" => 'no')), 302 => 'hideBox(false);')) ?>
+        </div>
+      </td>
+      <td class="spacer"></td>
+      <td class="rightward">
+        <?= $this->outputMessages() ?>
+        <?= $this->outputErrors() ?>
+      </td>
+    </tr>
+  </tbody>
+</table>

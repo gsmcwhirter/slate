@@ -1,0 +1,4 @@
+pass/reset => mass_password_reset_form
+pass/doreset => process_mass_password_reset_form
+add => mass_user_addition_form
+add/process => process_mass_user_addition_form

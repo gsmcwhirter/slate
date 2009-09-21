@@ -1,0 +1,12 @@
+<?php if($this->show_any){echo $this->myCalendarOutput();} ?>
+<input type="hidden" name="rcid" id="rcid" value="<?= ($this->consultant) ? $this->consultant->consultant_id : "" ?>" />
+<input type="hidden" name="sdate2" id="sdate2" value="<?= (!$this->show_any || ($this->sem && !$this->sddelta)) ? "" : TOOLS::date_to_s($this->startd) ?>" />
+<input type="hidden" name="pdate2" id="pdate2" value="<?= (!$this->show_any || ($this->sem && !$this->sddelta)) ? "" : TOOLS::date_to_s($this->stopd) ?>" />
+<input type="hidden" name="sem_id" id="sem_id" value="<?= ($this->sem) ? $this->sem->semester_id : "" ?>" />
+<input type="hidden" name="wday" id="wday" value="8" />
+<input type="hidden" name="starttime" id="starttime" value="" />
+<input type="hidden" name="stoptime" id="stoptime" value="" />
+<input type="hidden" name="startrow" id="startrow" value="" />
+<input type="hidden" name="method" id="method" value="" />
+<input type="hidden" name="formajax" id="formajax" value="<?= self::url_for('consultanthour_admin', 'process_display_week') ?>" />
+<input type="hidden" name="controller_name" id="controller_name" value="consultanthour_admin" />

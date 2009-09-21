@@ -1,0 +1,31 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+
+<div id="formwrap">
+<div class="titler" style="float:left;">Viewing Consultant Hours</div><div style="float:right"><?= kvframework_markup::link_to_remote("cancel", array("update" => 'main_div', "url" => self::url_for('admin', 'index'), "loading" => 'doLoading(\'main\')')) ?></div><br />&nbsp;<br />
+<?= kvframework_markup::form_remote_tag(array("id" => "rc_form", "update" => 'main_div', "url" => self::url_for('stats', 'consultanthours_report'), "loading" => "doLoading('main');")) ?>
+Semester: <?= kvframework_markup::select(array("name" => "sem_id", "values" => $this->all_sems, "include_blank" => true, "selected" => null, "class" => 'txtbox2')) ?><br />-or-<br />
+Dates: <input type="text" name="sdate" id="sdate" value="" size="10" /> -
+<input type="text" name="pdate" id="pdate" value="" size="10" />
+<input type="submit" value="change view" class="txtbox3" />
+</form>
+<?php if(!self::is_errors() && $this->process){
+  ?>
+  <p><a href='<?= CONFIG::rooturl ?>/pdf/<?= $this->pdf ?>'>PDF version</a></p>
+  <p>
+  Viewing Dates: <?= TOOLS::date_to_s($this->startd) ?> to <?= TOOLS::date_to_s($this->stopd) ?> <?= ($this->sem) ? "(".$this->sem->name.")" : "" ?>
+  </p>
+    <?php foreach($this->info as $rc => $week){ ?>
+    <p><strong><?= Consultant::select_name($this->all_consultants[$rc]) ?></strong>:<br />
+    <ul>
+      <?php foreach($week as $wday => $wdayinfo){ ?>
+        <?php if(count($wdayinfo) > 0){ ?>
+        <li><?= TOOLS::$daynames[$wday] ?>: <?= implode(", ", TOOLS::array_collect($wdayinfo, '$e', 'TOOLS::time_to_s($e[0], true)." - ".TOOLS::time_to_s($e[1], true)." ".(($e[2]) ? "(ONCALL)" : "")')) ?>
+        <?php } ?>
+        </li>
+      <?php } ?>
+    </ul></p>
+    <?php } ?>
+  <?php
+} ?>
+</div>

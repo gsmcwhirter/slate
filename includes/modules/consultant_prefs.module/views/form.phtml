@@ -1,0 +1,47 @@
+<?= $this->outputMessages1() ?>
+<?= $this->outputErrors1() ?>
+<div id="formwrap">
+<p>
+<strong>Text Message Notification Explanation:</strong><ul><p>
+ Text message notifications are an opt-in feature.  You must know the email address to send a text message to your phone.  This feature will
+ count against your text message quota (if any) blah blah blah.</p>
+<p>
+ Notifications will be sent for appointments scheduled on the same day only.  This means if it is Wednesday Dec 12, you will only get notified
+ of appointments scheduled for Wednesday Dec 12.  Notifications will be basic, namely that you have an appointment at some time.  You will have
+ to check your e-mail as usual for a link to get full details.
+</p></ul>
+<p>
+<?php if($this->rcinfo){ ?>
+<?= kvframework_markup::form_remote_tag(array("update" => 'main_div', "url" => self::url_for('consultant_prefs','process_pref_form'))) ?>
+<table cellspacing="0">
+<tbody>
+  <tr align="left" valign="center">
+    <td class="title" colspan="2"><div class="titler" style="float:left;">Consultant Preferences</div><div style="float:right;"><?= kvframework_markup::link_to_remote("go back", array("update" => 'main_div', "url" => self::url_for('display','display_date_full'), "loading" => 'doLoading(\'main\')', "complete" => "windowload();")) ?></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Receive Text-Message Alerts:</th>
+    <td><?= kvframework_markup::select(array("name" => "form[pref_send_text]", "values" => array(array("Yes","yes"), array("No","no")), "prompt" => false, "selected" => (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("pref_send_text", self::$PARAMS["form"])) ? self::$PARAMS["form"]["pref_send_text"] : $this->rcinfo->pref_send_text, "class" => 'txtbox2')) ?></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>Text-Message Address:</th>
+    <td><input type="text" name="form[pref_text_address]" id="form[pref_text_address]" class="txtbox1" value="<?= (array_key_exists("form", self::$PARAMS) && is_array(self::$PARAMS["form"]) && array_key_exists("pref_text_address", self::$PARAMS["form"])) ? self::$PARAMS["form"]["pref_text_address"] : $this->rcinfo->pref_text_address ?>" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="spacer"></td>
+  </tr>
+  <tr align="left" valign="top">
+    <th>&nbsp;</th>
+    <td><input type="submit" value="save changes" class="txtbox3" /></td>
+  </tr>
+</tbody>
+</table>
+
+<?php } ?>
+<p></p>
+</div>
