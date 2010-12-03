@@ -1,0 +1,4 @@
+easy_install tornado
+easy_install sockettornad.io
+
+git submodule update --init --recursive

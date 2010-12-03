@@ -1,0 +1,9 @@
+[submodule "client/js/sammy"]
+	path = client/js/sammy
+	url = https://github.com/quirkey/sammy.git
+[submodule "client/js/socket.io"]
+	path = client/js/socket.io
+	url = https://github.com/LearnBoost/Socket.IO.git
+[submodule "client/css/blueprint"]
+	path = client/css/blueprint
+	url = https://github.com/joshuaclayton/blueprint-css.git
